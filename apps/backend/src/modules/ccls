@@ -1,0 +1,230 @@
+import { prisma } from '../../config/database';
+import { logger } from '../../config/logger';
+import type { Prisma } from '@prisma/client';
+import { PaginationHelper, PaginatedResponse } from '../../utils/pagination';
+import { Sanitizer } from '../../utils/sanitizer';
+import { NotFoundError, AppError } from '../../middleware/error-handler';
+import { env } from '../../config/env';
+import { ChatAgent } from '../../ai/agents/chat-agent';
+import { v4 as uuidv4 } from 'uuid';
+
+export class ChatService {
+  public static async createConversation(
+    userId: string,
+    data: { title?: string; productId?: string }
+  ) {
+    const conversation = await prisma.chatConversation.create({
+      data: {
+        id: uuidv4(),
+        userId,
+        title: data.title || 'New Conversation',
+        status: 'ACTIVE',
+        messages: {
+          create: {
+            id: uuidv4(),
+            senderType: 'SYSTEM',
+            content: 'Conversation started. How can I help you today?',
+            metadata: { type: 'system', action: 'conversation_started' },
+          },
+        },
+      },
+      include: {
+        messages: {
+          take: 1,
+          orderBy: { createdAt: 'desc' },
+        },
+      },
+    });
+
+    logger.info('Chat conversation created: ' + conversation.id);
+
+    return conversation;
+  }
+
+  public static async listConversations(
+    userId: string,
+    page: number = 1,
+    limit: number = 20,
+    status?: string
+  ): Promise<PaginatedResponse<any>> {
+    const where: any = { userId };
+
+    if (status) {
+      where.status = status;
+    }
+
+    const skip = (page - 1) * limit;
+
+    const [conversations, total] = await Promise.all([
+      prisma.chatConversation.findMany({
+        where,
+        select: {
+          id: true,
+          title: true,
+          status: true,
+          lastMessageAt: true,
+          createdAt: true,
+          updatedAt: true,
+          messages: {
+            take: 1,
+            orderBy: { createdAt: 'desc' },
+            select: {
+              content: true,
+              senderType: true,
+              createdAt: true,
+            },
+          },
+        },
+        orderBy: { updatedAt: 'desc' },
+        skip,
+        take: limit,
+      }),
+      prisma.chatConversation.count({ where }),
+    ]);
+
+    const formattedConversations = conversations.map((conv: any) => ({
+      ...conv,
+      lastMessage: conv.messages[0] || null,
+      messages: undefined,
+    }));
+
+    return PaginationHelper.createPaginatedResponse(
+      formattedConversations,
+      total,
+      { page, limit }
+    );
+  }
+
+  public static async getConversation(conversationId: string, userId?: string) {
+    const where: any = { id: conversationId };
+    if (userId) where.userId = userId;
+
+    const conversation = await prisma.chatConversation.findFirst({
+      where,
+      include: {
+        messages: {
+          orderBy: { createdAt: 'asc' },
+        },
+      },
+    });
+
+    if (!conversation) {
+      throw new NotFoundError('Conversation');
+    }
+
+    return conversation;
+  }
+
+  public static async sendMessage(
+    conversationId: string,
+    userId: string,
+    content: string
+  ) {
+    const conversation = await prisma.chatConversation.findFirst({
+      where: {
+        id: conversationId,
+        userId,
+        status: 'ACTIVE',
+      },
+    });
+
+    if (!conversation) {
+      throw new NotFoundError('Conversation');
+    }
+
+    const userMessage = await prisma.chatMessage.create({
+      data: {
+        id: uuidv4(),
+        conversationId,
+        senderType: 'USER',
+        content: Sanitizer.sanitizeHtml(content),
+        metadata: {},
+      },
+    });
+
+    await prisma.chatConversation.update({
+      where: { id: conversationId },
+      data: {
+        lastMessageAt: new Date(),
+      },
+    });
+
+    let aiResponse: any = null;
+
+    if (env.ENABLE_AI_FEATURES) {
+      try {
+        const recentMessages = await prisma.chatMessage.findMany({
+          where: { conversationId },
+          orderBy: { createdAt: 'desc' },
+          take: 10,
+        });
+
+        const aiAgent = new ChatAgent();
+        const aiContent = await aiAgent.generateResponse(
+          conversationId,
+          userId,
+          recentMessages.reverse()
+        );
+
+        aiResponse = await prisma.chatMessage.create({
+          data: {
+            id: uuidv4(),
+            conversationId,
+            senderType: 'AI',
+            content: aiContent,
+            metadata: { type: 'ai_response' },
+          },
+        });
+
+        await prisma.chatConversation.update({
+          where: { id: conversationId },
+          data: { lastMessageAt: new Date() },
+        });
+      } catch (error) {
+        logger.error('Failed to generate AI response');
+
+        aiResponse = await prisma.chatMessage.create({
+          data: {
+            id: uuidv4(),
+            conversationId,
+            senderType: 'SYSTEM',
+            content: "I'm sorry, I'm having trouble processing your request. Please try again or contact our support team.",
+            metadata: { type: 'error', error: 'ai_failed' },
+          },
+        });
+      }
+    } else {
+      aiResponse = await prisma.chatMessage.create({
+        data: {
+          id: uuidv4(),
+          conversationId,
+          senderType: 'SYSTEM',
+          content: 'AI features are currently disabled. A support agent will assist you shortly.',
+          metadata: { type: 'system', action: 'ai_disabled' },
+        },
+      });
+    }
+
+    return {
+      userMessage,
+      aiResponse,
+    };
+  }
+
+  public static async archiveConversation(conversationId: string, userId: string) {
+    const conversation = await prisma.chatConversation.findFirst({
+      where: { id: conversationId, userId },
+    });
+
+    if (!conversation) {
+      throw new NotFoundError('Conversation');
+    }
+
+    await prisma.chatConversation.update({
+      where: { id: conversationId },
+      data: { status: 'ARCHIVED' },
+    });
+
+    logger.info('Conversation archived: ' + conversationId);
+  }
+}
