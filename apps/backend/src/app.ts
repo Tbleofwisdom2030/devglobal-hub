@@ -34,49 +34,43 @@ export function createApp(): express.Express {
     crossOriginEmbedderPolicy: false,
     crossOriginResourcePolicy: { policy: 'cross-origin' }
   }));
+  
+  // FIXED: Handle * properly for CORS
+  const corsOrigin = env.CORS_ORIGIN;
   app.use(cors({
-    origin: env.CORS_ORIGIN.split(',').map(o => o.trim()),
+    origin: corsOrigin === '*' ? '*' : corsOrigin.split(',').map(o => o.trim()),
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Request-ID', 'X-API-Key'],
     exposedHeaders: ['X-Request-ID'],
     maxAge: 86400,
   }));
+  
   app.use(compression());
   app.use(express.json({ limit: '10mb' }));
   app.use(express.urlencoded({ extended: true, limit: '10mb' }));
   app.use(cookieParser());
   app.use(RequestLoggerMiddleware.log);
 
-  // ============================================
-  // SERVE STATIC FILES - MUST BE BEFORE API ROUTES
-  // ============================================
   const uploadsPath = path.join(process.cwd(), 'uploads');
   app.use('/uploads', express.static(uploadsPath, {
     maxAge: '1d',
     etag: true,
     setHeaders: (res, filePath) => {
-      // Set CORS headers for images
       res.setHeader('Access-Control-Allow-Origin', '*');
       res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
     }
   }));
   
-  // Also serve from /api/uploads for consistency
   app.use('/api/uploads', express.static(uploadsPath));
 
-  // ============================================
-  // RATE LIMITING & AUDIT (only for API routes)
-  // ============================================
   app.use('/api/', RateLimitMiddleware.generalLimit());
   app.use('/api/', AuditMiddleware.log);
 
-  // Health check
   app.get('/health', async (req, res) => {
     res.json({ status: 'healthy', timestamp: new Date().toISOString(), uptime: process.uptime() });
   });
 
-  // API Routes
   const apiRouter = express.Router();
   apiRouter.use('/auth', authRoutes);
   apiRouter.use('/products', productsRoutes);
@@ -93,11 +87,7 @@ export function createApp(): express.Express {
   apiRouter.use('/site-settings', settingsRoutes);
 
   app.use('/api/v1', apiRouter);
-  
-  // 404 handler for API routes
   app.use('/api/', ErrorHandlerMiddleware.notFound);
-  
-  // Global error handler
   app.use(ErrorHandlerMiddleware.handle);
 
   return app;
