@@ -1,6 +1,6 @@
 ﻿'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
@@ -10,7 +10,7 @@ import { Button, Input, Card } from '@devglobal/ui';
 import { useAuth } from '@/hooks/use-auth';
 import { Eye, EyeOff, Loader2 } from 'lucide-react';
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { login } = useAuth();
@@ -28,9 +28,7 @@ export default function LoginPage() {
   const onSubmit = async (data: LoginFormData) => {
     setError('');
     try {
-      // ✅ The login function handles the redirect based on role
       await login(data.email, data.password);
-      // ❌ DO NOT redirect here - let the useAuth hook handle it
     } catch (error: any) {
       setError(
         error.response?.data?.error || 'Invalid email or password'
@@ -123,7 +121,7 @@ export default function LoginPage() {
 
         <div className="mt-6 text-center text-sm">
           <span className="text-muted-foreground">
-            Don't have an account?{' '}
+            Don&apos;t have an account?{' '}
           </span>
           <Link href="/register" className="text-primary hover:underline font-medium">
             Sign up
@@ -144,5 +142,17 @@ export default function LoginPage() {
         </p>
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center min-h-[200px]">
+        <div className="animate-spin h-8 w-8 border-4 border-primary border-t-transparent rounded-full" />
+      </div>
+    }>
+      <LoginForm />
+    </Suspense>
   );
 }
