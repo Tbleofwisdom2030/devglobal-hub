@@ -6,12 +6,12 @@
     "outDir": "./dist",
     "rootDir": ".",
     "baseUrl": "./src",
-    "ignoreDeprecations": "6.0",
     "paths": {
       "@/*": ["./*"],
       "@devglobal/shared": ["../../packages/shared/src"],
       "@devglobal/shared/*": ["../../packages/shared/src/*"]
     },
+    "ignoreDeprecations": "6.0",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
