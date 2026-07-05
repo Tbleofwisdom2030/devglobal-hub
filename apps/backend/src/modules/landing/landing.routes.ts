@@ -1,9 +1,9 @@
-import { Router } from 'express';
+import { Router, type Router as ExpressRouter } from 'express';
 import { LandingController } from './landing.controller';
 import { AuthMiddleware } from '../../middleware/auth';
 import { RBACMiddleware } from '../../middleware/rbac';
 
-const router = Router();
+const router: ExpressRouter = Router();
 
 // Public route
 router.get('/', LandingController.getLandingPage);

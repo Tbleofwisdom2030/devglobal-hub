@@ -17,7 +17,7 @@ const upload = multer({
   },
 });
 
-const router = Router();
+const router: Router = Router();
 router.use(AuthMiddleware.authenticate);
 router.use(RBACMiddleware.isAdmin);
 
