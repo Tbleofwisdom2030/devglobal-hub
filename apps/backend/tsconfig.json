@@ -6,6 +6,7 @@
     "outDir": "./dist",
     "rootDir": ".",
     "baseUrl": "./src",
+    "ignoreDeprecations": "6.0",
     "paths": {
       "@/*": ["./*"],
       "@devglobal/shared": ["../../packages/shared/src"],
@@ -20,7 +21,6 @@
     "declarationMap": true,
     "sourceMap": true,
     "moduleResolution": "node",
-    "ignoreDeprecations": "6.0",
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
