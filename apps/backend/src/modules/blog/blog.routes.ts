@@ -3,6 +3,7 @@ import { BlogController } from './blog.controller';
 import { AuthMiddleware } from '../../middleware/auth';
 import { RBACMiddleware } from '../../middleware/rbac';
 import { ValidationMiddleware } from '../../middleware/validate';
+import { createBlogSchema, updateBlogSchema } from './blog.schema';
 
 const router: Router = Router();
 
@@ -15,7 +16,7 @@ router.post(
   '/',
   AuthMiddleware.authenticate,
   RBACMiddleware.isAdmin,
-  ValidationMiddleware.validate({} as any),
+  ValidationMiddleware.validate(createBlogSchema),
   BlogController.createPost
 );
 
@@ -23,6 +24,7 @@ router.put(
   '/:id',
   AuthMiddleware.authenticate,
   RBACMiddleware.isAdmin,
+  ValidationMiddleware.validate(updateBlogSchema),
   BlogController.updatePost
 );
 
