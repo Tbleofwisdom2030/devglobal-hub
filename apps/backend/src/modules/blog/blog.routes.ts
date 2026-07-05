@@ -11,7 +11,10 @@ const router: Router = Router();
 router.get('/', BlogController.listPosts);
 router.get('/:slug', BlogController.getPost);
 
-// Admin routes
+// Admin routes - list all (including drafts)
+router.get('/admin/all', AuthMiddleware.authenticate, RBACMiddleware.isAdmin, BlogController.listPosts);
+
+// Create
 router.post(
   '/',
   AuthMiddleware.authenticate,
@@ -20,6 +23,7 @@ router.post(
   BlogController.createPost
 );
 
+// Update
 router.put(
   '/:id',
   AuthMiddleware.authenticate,
@@ -28,6 +32,7 @@ router.put(
   BlogController.updatePost
 );
 
+// Delete
 router.delete(
   '/:id',
   AuthMiddleware.authenticate,
