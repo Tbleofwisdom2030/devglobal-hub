@@ -55,11 +55,15 @@ export class MediaService {
     const where: any = {};
     if (type) where.mimeType = { startsWith: type };
 
+    const paginationParams = PaginationHelper.getPaginationParams({ page, limit });
+    const { cursor, ...restParams } = paginationParams;
+
     const [media, total] = await Promise.all([
       prisma.media.findMany({
         where,
         orderBy: { createdAt: 'desc' },
-        ...PaginationHelper.getPaginationParams({ page, limit }),
+        ...(cursor ? { cursor: { id: cursor.id } } : {}),
+        ...restParams,
       }),
       prisma.media.count({ where }),
     ]);
@@ -76,7 +80,7 @@ export class MediaService {
       const key = media.url.split('/').pop();
       if (key) await StorageService.deleteFile(key);
     } catch (error) {
-      logger.warn('Failed to delete file from storage:', error);
+      logger.warn(`Failed to delete file from storage: ${String(error)}`);
     }
 
     await prisma.media.delete({ where: { id } });

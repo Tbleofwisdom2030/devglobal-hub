@@ -35,7 +35,10 @@ async function getS3Client() {
 
 // Base URL for uploaded files
 function getBaseUrl(): string {
-  // Use the backend URL so frontend can access files
+  // Use BASE_URL env variable for production, fallback to localhost
+  if (process.env.BASE_URL) {
+    return process.env.BASE_URL;
+  }
   const port = env.PORT || '4000';
   return `http://localhost:${port}`;
 }
@@ -87,10 +90,14 @@ export class StorageService {
   }
 
   public static async deleteFile(urlOrKey: string): Promise<void> {
-    // Extract the local path from URL
-    if (urlOrKey.startsWith('http://localhost:')) {
-      const url = new URL(urlOrKey);
-      urlOrKey = url.pathname;
+    // Extract the local path from URL (works for both localhost and production URLs)
+    if (urlOrKey.startsWith('http')) {
+      try {
+        const url = new URL(urlOrKey);
+        urlOrKey = url.pathname;
+      } catch {
+        // Not a valid URL, use as-is
+      }
     }
 
     const client = await getS3Client();
