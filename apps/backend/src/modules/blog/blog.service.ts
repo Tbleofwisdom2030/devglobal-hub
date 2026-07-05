@@ -19,7 +19,7 @@ export class BlogService {
           likes: true, viewCount: true, createdAt: true,
           _count: { select: { comments: true } },
         },
-        ...PaginationHelper.getPaginationParams({ page, limit }),
+        ...(PaginationHelper.getPaginationParams({ page, limit }) as any),
         orderBy: { createdAt: 'desc' },
       }),
       prisma.blogPost.count({ where }),

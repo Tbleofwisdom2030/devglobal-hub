@@ -70,7 +70,7 @@ export class ChatService {
         logger.info('Trying OpenRouter...');
         return await ChatService.callOpenRouter(messages);
       } catch (e: any) {
-        logger.warn('OpenRouter failed:', e.message);
+        logger.warn({ err: e }, 'OpenRouter failed');
       }
     }
 
@@ -80,7 +80,7 @@ export class ChatService {
         logger.info('Trying Gemini...');
         return await ChatService.callGemini(messages);
       } catch (e: any) {
-        logger.warn('Gemini failed:', e.message);
+        logger.warn({ err: e }, 'Gemini failed');
       }
     }
 
@@ -121,7 +121,7 @@ Be friendly, professional, and concise. Keep responses under 200 words. Help cus
     const data = await response.json();
     
     if (data.error) {
-      logger.error('OpenRouter error:', data.error);
+      logger.error({ err: data.error }, 'OpenRouter error');
       throw new Error(data.error.message || 'OpenRouter API error');
     }
 
@@ -161,7 +161,7 @@ Be friendly, professional, and concise. Keep responses under 200 words. Help cus
     const data = await response.json();
     
     if (data.error) {
-      logger.error('Gemini error:', data.error);
+      logger.error({ err: data.error }, 'Gemini error');
       throw new Error(data.error.message || 'Gemini API error');
     }
 
