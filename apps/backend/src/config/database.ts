@@ -12,12 +12,12 @@ export const prisma = globalForPrisma.prisma || new PrismaClient({
 
 if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
 
-;(prisma as any).$on('warn', (e: any) => {
-  logger.warn('Prisma warning:', e);
+(prisma as any).$on('warn', (e: any) => {
+  logger.warn({ err: e }, 'Prisma warning');
 });
 
-;(prisma as any).$on('error', (e: any) => {
-  logger.error('Prisma error:', e);
+(prisma as any).$on('error', (e: any) => {
+  logger.error({ err: e }, 'Prisma error');
 });
 
 export const database = {
@@ -27,7 +27,7 @@ export const database = {
       await prisma.$connect();
       logger.info('✅ Database connected successfully');
     } catch (error) {
-      logger.error('❌ Database connection failed:', error as any);
+      logger.error({ err: error }, '❌ Database connection failed');
       throw error;
     }
   },
