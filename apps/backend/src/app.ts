@@ -35,7 +35,7 @@ export function createApp(): express.Express {
     crossOriginResourcePolicy: { policy: 'cross-origin' }
   }));
   
-  // FIXED: Handle * properly for CORS
+  // CORS - handles both wildcard and specific origins
   const corsOrigin = env.CORS_ORIGIN;
   app.use(cors({
     origin: corsOrigin === '*' ? '*' : corsOrigin.split(',').map(o => o.trim()),
@@ -52,6 +52,7 @@ export function createApp(): express.Express {
   app.use(cookieParser());
   app.use(RequestLoggerMiddleware.log);
 
+  // Static file serving for uploads
   const uploadsPath = path.join(process.cwd(), 'uploads');
   app.use('/uploads', express.static(uploadsPath, {
     maxAge: '1d',
@@ -61,17 +62,26 @@ export function createApp(): express.Express {
       res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
     }
   }));
-  
   app.use('/api/uploads', express.static(uploadsPath));
 
+  // Rate limiting and audit for API routes
   app.use('/api/', RateLimitMiddleware.generalLimit());
   app.use('/api/', AuditMiddleware.log);
 
+  // Health check
   app.get('/health', async (req, res) => {
-    res.json({ status: 'healthy', timestamp: new Date().toISOString(), uptime: process.uptime() });
+    res.json({ 
+      status: 'healthy', 
+      timestamp: new Date().toISOString(), 
+      uptime: process.uptime() 
+    });
   });
 
+  // ============================================
+  // API Routes - /api/v1/
+  // ============================================
   const apiRouter = express.Router();
+  
   apiRouter.use('/auth', authRoutes);
   apiRouter.use('/products', productsRoutes);
   apiRouter.use('/orders', ordersRoutes);
@@ -84,10 +94,14 @@ export function createApp(): express.Express {
   apiRouter.use('/landing', landingRoutes);
   apiRouter.use('/blog', blogRoutes);
   apiRouter.use('/media', mediaRoutes);
-  apiRouter.use('/site-settings', settingsRoutes);
+  apiRouter.use('/settings', settingsRoutes);
 
   app.use('/api/v1', apiRouter);
+
+  // 404 handler for API routes
   app.use('/api/', ErrorHandlerMiddleware.notFound);
+  
+  // Global error handler
   app.use(ErrorHandlerMiddleware.handle);
 
   return app;
