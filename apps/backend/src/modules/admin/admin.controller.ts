@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { AdminService } from './admin.service';
 import { logger } from '../../config/logger';
+import { prisma } from '../../config/database';
 
 export class AdminController {
   public static async getDashboardStats(
@@ -55,6 +56,23 @@ export class AdminController {
     try {
       const user = await AdminService.updateUserRole(req.params.id, req.body.role);
       res.json({ success: true, message: 'User role updated successfully', data: user });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  public static async verifyUser(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> {
+    try {
+      await prisma.user.update({
+        where: { id: req.params.id },
+        data: { emailVerified: true },
+      });
+      logger.info(`User verified by admin: ${req.params.id}`);
+      res.json({ success: true, message: 'User verified successfully' });
     } catch (error) {
       next(error);
     }

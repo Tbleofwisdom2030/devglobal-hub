@@ -19,6 +19,7 @@ router.get('/notifications', (AdminController as any).getNotifications);
 // Users
 router.get('/users', AdminController.listUsers);
 router.put('/users/:id/role', ValidationMiddleware.validate(z.object({ role: z.enum(['CUSTOMER', 'ADMIN', 'SUPPORT']) })), AdminController.updateUserRole);
+router.put('/users/:id/verify', (AdminController as any).verifyUser);
 
 // Analytics
 router.get('/analytics/sales', AdminController.getSalesAnalytics);
