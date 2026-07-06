@@ -14,7 +14,7 @@ export default function AdminSettingsPage() {
   const { data: settings } = useQuery({
     queryKey: ['site-settings'],
     queryFn: async () => {
-      const response = await apiClient.get('/site-settings');
+      const response = await apiClient.get('/settings');
       return response.data.data;
     },
   });
@@ -49,11 +49,18 @@ export default function AdminSettingsPage() {
 
   const saveMutation = useMutation({
     mutationFn: async (data: any) => {
-      await apiClient.put('/admin/settings', data);
+      await apiClient.put('/settings', data);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['site-settings'] });
       toast({ title: 'Settings saved!', variant: 'success' });
+    },
+    onError: (error: any) => {
+      toast({ 
+        title: 'Failed to save', 
+        description: error.response?.data?.error || 'Please try again', 
+        variant: 'destructive' 
+      });
     },
   });
 
@@ -102,7 +109,7 @@ export default function AdminSettingsPage() {
         <div>
           <label className="block text-sm font-medium mb-2">Primary Color</label>
           <div className="flex gap-2">
-            <Input value={form.primaryColor} onChange={(e) => setForm(prev => ({ ...prev, primaryColor: e.target.value }))} type="color" className="w-16 h-10 p-1" />
+            <input type="color" value={form.primaryColor} onChange={(e) => setForm(prev => ({ ...prev, primaryColor: e.target.value }))} className="w-16 h-10 rounded border p-1 cursor-pointer" />
             <Input value={form.primaryColor} onChange={(e) => setForm(prev => ({ ...prev, primaryColor: e.target.value }))} className="flex-1" />
           </div>
         </div>

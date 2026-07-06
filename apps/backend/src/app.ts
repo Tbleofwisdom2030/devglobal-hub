@@ -95,6 +95,7 @@ export function createApp(): express.Express {
   apiRouter.use('/blog', blogRoutes);
   apiRouter.use('/media', mediaRoutes);
   apiRouter.use('/settings', settingsRoutes);
+  apiRouter.use('/site-settings', settingsRoutes); // Alias for admin panel compatibility
 
   app.use('/api/v1', apiRouter);
 
