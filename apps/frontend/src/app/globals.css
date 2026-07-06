@@ -1,55 +1,413 @@
-@tailwind base;
+﻿@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ===== ፕሪሚየም ፎንቶች (Premium Fonts) ===== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+/* ካቢኔት ግሮቴስክ እና ክላሽ ዲስፕሌይ ለፕሮዳክሽን በCDN ወይም በሎካል ፋይል መጠቀም ይመረጣል። 
+   እዚህ ላይ እንደ @font-face ልገልጻቸው ነው። */
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/fonts/ClashDisplay-Variable.woff2') format('woff2');
+  font-weight: 200 800;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Cabinet Grotesk';
+  src: url('/fonts/CabinetGrotesk-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+}
+
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* ===== 1. ዋና የገጽታ ቀለማት (Surface Colors) ===== */
+    /* ከነባሩ በተለየ መልኩ ሞቅ ያለና ጥልቀት ያለው ዳራ */
+    --background: 40 30% 98%;  /* ሞቅ ያለ ነጭ - እንደ ኢትዮጵያዊ ጥጥ */
+    --foreground: 220 15% 10%; /* ለስላም ጥቁር - ለዓይን ምቹ */
+    
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --primary: 243 75% 59%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --card-foreground: 220 15% 10%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 10%;
+
+    /* ===== 2. የኢትዮጵያ ቀለማት በዘመናዊ አቀራረብ ===== */
+    /* ሮያል ጎልድ (ከወርቅ አክሱማውያን ሳንቲሞች ተመስጦ) */
+    --gold-50: 46 100% 97%;
+    --gold-100: 45 100% 88%;
+    --gold-200: 45 100% 75%;
+    --gold-300: 43 85% 58%;
+    --gold-400: 41 80% 48%;
+    --gold-500: 38 75% 40%;   /* ዋናው ጎልድ */
+    --gold-600: 35 70% 33%;
+    --gold-700: 30 65% 25%;
+    --gold-800: 25 60% 18%;
+    --gold-900: 20 55% 12%;
+
+    /* ፎረስት ግሪን (ከኢትዮጵያ ደኖች ተመስጦ) */
+    --forest-50: 140 60% 97%;
+    --forest-100: 140 55% 90%;
+    --forest-200: 140 50% 80%;
+    --forest-300: 140 45% 65%;
+    --forest-400: 140 40% 50%;
+    --forest-500: 140 50% 32%;  /* ዋናው አረንጓዴ */
+    --forest-600: 140 55% 24%;
+    --forest-700: 140 60% 18%;
+    --forest-800: 140 65% 12%;
+    --forest-900: 140 70% 8%;
+
+    /* ኧርዝ ሬድ (ከኢትዮጵያ መሬት ተመስጦ) */
+    --earth-50: 0 70% 97%;
+    --earth-100: 0 65% 90%;
+    --earth-200: 0 60% 80%;
+    --earth-300: 0 55% 70%;
+    --earth-400: 0 60% 55%;
+    --earth-500: 0 65% 42%;    /* ዋናው ቀይ */
+    --earth-600: 0 70% 34%;
+    --earth-700: 0 75% 26%;
+    --earth-800: 0 80% 18%;
+    --earth-900: 0 85% 12%;
+
+    /* ===== 3. ፕሪሚየም ሼዶውስ (Shadows) ===== */
+    /* ለስላሳና ባለብዙ ሽፋን ሼዶው */
+    --shadow-premium-sm: 0px 2px 4px rgba(0, 0, 0, 0.02), 0px 4px 8px rgba(0, 0, 0, 0.02);
+    --shadow-premium-md: 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 8px 16px rgba(0, 0, 0, 0.04);
+    --shadow-premium-lg: 0px 8px 16px rgba(0, 0, 0, 0.06), 0px 16px 32px rgba(0, 0, 0, 0.06);
+    --shadow-premium-xl: 0px 16px 32px rgba(0, 0, 0, 0.08), 0px 32px 64px rgba(0, 0, 0, 0.08);
+    --shadow-glow-gold: 0 0 25px rgba(212, 168, 67, 0.15);
+
+    /* ===== 4. ፕሪሚየም ቦርደሮች ===== */
+    --border-subtle: 220 20% 94%;
+    --border-default: 220 15% 88%;
+    --border-hover: 220 10% 80%;
+    --border-focus: 38 75% 40%;  /* ጎልድ ላይ ፎከስ */
+
+    /* ===== 5. ተግባራዊ ቀለማት ===== */
+    --primary: 38 75% 40%;       /* ጎልድ እንደ ዋና ፕራይመሪ */
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 140 50% 32%;    /* አረንጓዴ እንደ ሴኮንደሪ */
+    --secondary-foreground: 0 0% 100%;
+    
+    --muted: 220 20% 96%;
+    --muted-foreground: 220 10% 46%;
+    
+    --accent: 0 65% 42%;         /* ቀይ እንደ አክሰንት */
+    --accent-foreground: 0 0% 100%;
+    
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 243 75% 59%;
-    --radius: 0.5rem;
+    --destructive-foreground: 0 0% 100%;
+    
+    --ring: 38 75% 40%;          /* ጎልድ ሪንግ */
+
+    /* ===== 6. ፕሪሚየም ሬዲየስ ===== */
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.25rem;
+    --radius-2xl: 1.5rem;
+    --radius-3xl: 2rem;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --primary: 243 75% 59%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 243 75% 59%;
+    /* ===== 1. ዋና የገጽታ ቀለማት (Dark Mode) ===== */
+    --background: 220 15% 4%;    /* ጥልቅ ጥቁር - እንደ ሌሊት ሰማይ */
+    --foreground: 40 20% 92%;    /* ለስላም ነጭ */
+    
+    --card: 220 15% 6%;
+    --card-foreground: 40 20% 92%;
+    
+    --popover: 220 15% 6%;
+    --popover-foreground: 40 20% 92%;
+
+    /* ===== 2. የኢትዮጵያ ቀለማት (Dark Mode) ===== */
+    /* በጨለማ ሁኔታ የሚያንጸባርቁ ወርቃማ ቀለማት */
+    --gold-50: 45 100% 8%;
+    --gold-100: 44 80% 12%;
+    --gold-200: 43 75% 18%;
+    --gold-300: 42 80% 28%;
+    --gold-400: 40 85% 38%;
+    --gold-500: 38 75% 48%;     /* ብሩህ ጎልድ ለዳርክ ሞድ */
+    --gold-600: 36 70% 58%;
+    --gold-700: 34 65% 68%;
+    --gold-800: 32 60% 78%;
+    --gold-900: 30 55% 88%;
+
+    --forest-50: 140 40% 8%;
+    --forest-100: 140 45% 12%;
+    --forest-200: 140 50% 18%;
+    --forest-300: 140 55% 24%;
+    --forest-400: 140 60% 32%;
+    --forest-500: 140 50% 40%;
+    --forest-600: 140 45% 50%;
+    --forest-700: 140 40% 60%;
+    --forest-800: 140 35% 75%;
+    --forest-900: 140 30% 88%;
+
+    --earth-50: 0 50% 8%;
+    --earth-100: 0 55% 12%;
+    --earth-200: 0 60% 18%;
+    --earth-300: 0 65% 24%;
+    --earth-400: 0 70% 32%;
+    --earth-500: 0 65% 44%;
+    --earth-600: 0 60% 54%;
+    --earth-700: 0 55% 64%;
+    --earth-800: 0 50% 75%;
+    --earth-900: 0 45% 88%;
+
+    /* ===== 3. ፕሪሚየም ሼዶውስ (Dark Mode) ===== */
+    --shadow-premium-sm: 0px 2px 4px rgba(0, 0, 0, 0.3), 0px 4px 8px rgba(0, 0, 0, 0.2);
+    --shadow-premium-md: 0px 4px 8px rgba(0, 0, 0, 0.4), 0px 8px 16px rgba(0, 0, 0, 0.3);
+    --shadow-premium-lg: 0px 8px 16px rgba(0, 0, 0, 0.5), 0px 16px 32px rgba(0, 0, 0, 0.4);
+    --shadow-premium-xl: 0px 16px 32px rgba(0, 0, 0, 0.6), 0px 32px 64px rgba(0, 0, 0, 0.5);
+    --shadow-glow-gold: 0 0 35px rgba(212, 168, 67, 0.25);
+
+    /* ===== 4. ተግባራዊ ቀለማት (Dark Mode) ===== */
+    --border-subtle: 220 15% 12%;
+    --border-default: 220 10% 18%;
+    --border-hover: 220 8% 25%;
+    --border-focus: 38 75% 48%;
+    
+    --primary: 38 75% 48%;
+    --primary-foreground: 220 15% 4%;
+    
+    --secondary: 140 50% 40%;
+    --secondary-foreground: 220 15% 4%;
+    
+    --muted: 220 15% 12%;
+    --muted-foreground: 220 10% 60%;
+    
+    --accent: 0 65% 44%;
+    --accent-foreground: 220 15% 4%;
+    
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --ring: 38 75% 48%;
   }
 }
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border-default;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
+    /* ፕሪሚየም ፎንት ፊቸርስ */
+    font-feature-settings: "cv01", "cv02", "cv03", "ss01", "ss02";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* ለርዕሶች የሚሆን ፕሪሚየም ፎንት */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cabinet Grotesk', 'Clash Display', sans-serif;
+    @apply font-bold tracking-tight;
+    letter-spacing: -0.02em;
+  }
+  
+  h1 { @apply text-5xl md:text-6xl lg:text-7xl; }
+  h2 { @apply text-4xl md:text-5xl lg:text-6xl; }
+  h3 { @apply text-2xl md:text-3xl; }
+}
+
+@layer components {
+  /* ===== 1. የኢትዮጵያ ጥልምም ፓተርኖች (Ethiopian Telsem Patterns) ===== */
+  
+  /* ዳይመንድ ፓተርን - ከኢትዮጵያዊ ጌጣጌጥ የተወሰደ */
+  .ethiopian-pattern-diamonds {
+    background-color: transparent;
+    background-image: 
+      linear-gradient(45deg, hsl(var(--gold-500) / 0.1) 1px, transparent 1px),
+      linear-gradient(-45deg, hsl(var(--gold-500) / 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-position: center;
+  }
+
+  /* የመስመር ፓተርን - በባህላዊ ሽመና ተመስጦ */
+  .ethiopian-pattern-lines {
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 5px,
+      hsl(var(--gold-500) / 0.05) 5px,
+      hsl(var(--gold-500) / 0.05) 10px
+    );
+  }
+
+  /* የመስቀል ፓተርን - ከላሊበላ መስቀሎች ተመስጦ */
+  .ethiopian-pattern-cross {
+    background-image: 
+      radial-gradient(circle at 10px 10px, hsl(var(--gold-500) / 0.08) 1px, transparent 1px),
+      radial-gradient(circle at 30px 30px, hsl(var(--gold-500) / 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--gold-500) / 0.05) 1px, transparent 1px),
+      linear-gradient(0deg, hsl(var(--gold-500) / 0.05) 1px, transparent 1px);
+    background-size: 40px 40px, 40px 40px, 20px 20px, 20px 20px;
+  }
+
+  /* ===== 2. ፕሪሚየም ግላስ ውጤቶች (Glassmorphism) ===== */
+  .glass-card {
+    @apply bg-white/60 backdrop-blur-xl border border-border-subtle;
+    box-shadow: var(--shadow-premium-md);
+  }
+  
+  .dark .glass-card {
+    @apply bg-black/40 backdrop-blur-xl border border-white/[0.06];
+    box-shadow: var(--shadow-premium-md);
+  }
+
+  .glass-card-heavy {
+    @apply bg-white/80 backdrop-blur-2xl border border-border-default;
+    box-shadow: var(--shadow-premium-lg);
+  }
+  
+  .dark .glass-card-heavy {
+    @apply bg-black/60 backdrop-blur-2xl border border-white/[0.08];
+    box-shadow: var(--shadow-premium-lg);
+  }
+
+  /* ===== 3. ፕሪሚየም ግራዲየንቶች ===== */
+  .gradient-text-gold {
+    background: linear-gradient(135deg, hsl(var(--gold-400)), hsl(var(--gold-600)), hsl(var(--gold-400)));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+  }
+
+  .gradient-text-ethiopian {
+    background: linear-gradient(135deg, hsl(var(--forest-500)), hsl(var(--gold-500)), hsl(var(--earth-500)));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    animation: gradient-shift 4s ease infinite;
+  }
+
+  .gradient-bg-ethiopian {
+    background: linear-gradient(135deg, hsl(var(--forest-500)), hsl(var(--gold-500)), hsl(var(--earth-500)));
+  }
+
+  /* ===== 4. ፕሪሚየም ሆቨር ውጤት ===== */
+  .hover-lift {
+    @apply transition-all duration-300 ease-out;
+  }
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-premium-lg);
+  }
+
+  .ethiopian-border-glow {
+    @apply relative;
+  }
+  .ethiopian-border-glow::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, hsl(var(--gold-400)), hsl(var(--earth-400)), hsl(var(--forest-400)), hsl(var(--gold-400)));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  .ethiopian-border-glow:hover::before {
+    opacity: 1;
+  }
+
+  /* ===== 5. አኒሜሽኖች ===== */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-shimmer {
+    background: linear-gradient(90deg, transparent 0%, hsl(var(--gold-500) / 0.08) 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  .animate-ethiopian-spin {
+    border: 2px solid hsl(var(--border-default));
+    border-top-color: hsl(var(--gold-500));
+    border-right-color: hsl(var(--earth-500));
+    border-bottom-color: hsl(var(--forest-500));
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  .stagger-children > * {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fade-in-up 0.6s ease forwards;
+  }
+  .stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+  .stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
+  .stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
+  .stagger-children > *:nth-child(4) { animation-delay: 0.2s; }
+  .stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
+  .stagger-children > *:nth-child(6) { animation-delay: 0.3s; }
+}
+
+@layer utilities {
+  .font-clash {
+    font-family: 'Clash Display', sans-serif;
+  }
+  .font-cabinet {
+    font-family: 'Cabinet Grotesk', sans-serif;
+  }
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+  
+  /* ፕሪሚየም ሼዶው ክላሶች */
+  .shadow-premium-sm { box-shadow: var(--shadow-premium-sm); }
+  .shadow-premium-md { box-shadow: var(--shadow-premium-md); }
+  .shadow-premium-lg { box-shadow: var(--shadow-premium-lg); }
+  .shadow-premium-xl { box-shadow: var(--shadow-premium-xl); }
+  .shadow-glow-gold { box-shadow: var(--shadow-glow-gold); }
+}
+
+/* ===== ኪፍሬም አኒሜሽኖች ===== */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes fade-in-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 0 0 0 hsl(var(--gold-500) / 0.4); }
+  50% { box-shadow: 0 0 0 10px hsl(var(--gold-500) / 0); }
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
   }
 }
