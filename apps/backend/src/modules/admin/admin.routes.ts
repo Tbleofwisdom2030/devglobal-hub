@@ -7,23 +7,18 @@ import { z } from 'zod';
 
 const router: Router = Router();
 
-// All admin routes require authentication and admin role
 router.use(AuthMiddleware.authenticate);
 router.use(RBACMiddleware.isAdmin);
 
 // Dashboard
 router.get('/dashboard/stats', AdminController.getDashboardStats);
 
+// Notifications
+router.get('/notifications', (AdminController as any).getNotifications);
+
 // Users
 router.get('/users', AdminController.listUsers);
-
-router.put(
-  '/users/:id/role',
-  ValidationMiddleware.validate(
-    z.object({ role: z.enum(['CUSTOMER', 'ADMIN', 'SUPPORT']) })
-  ),
-  AdminController.updateUserRole
-);
+router.put('/users/:id/role', ValidationMiddleware.validate(z.object({ role: z.enum(['CUSTOMER', 'ADMIN', 'SUPPORT']) })), AdminController.updateUserRole);
 
 // Analytics
 router.get('/analytics/sales', AdminController.getSalesAnalytics);

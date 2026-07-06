@@ -59,6 +59,48 @@ export class AdminService {
     };
   }
 
+  public static async getNotifications() {
+    try {
+      const [recentTickets, recentOrders] = await Promise.all([
+        prisma.supportTicket.findMany({
+          where: { status: 'OPEN' },
+          orderBy: { createdAt: 'desc' },
+          take: 5,
+          select: { id: true, subject: true, createdAt: true },
+        }),
+        prisma.order.findMany({
+          where: { status: 'COMPLETED' },
+          orderBy: { createdAt: 'desc' },
+          take: 3,
+          select: { id: true, amountCents: true, createdAt: true },
+        }),
+      ]);
+
+      const notifications = [
+        ...recentTickets.map((t) => ({
+          id: t.id,
+          title: 'Support Ticket',
+          message: t.subject,
+          time: new Date(t.createdAt).toLocaleDateString(),
+          type: 'ticket',
+        })),
+        ...recentOrders.map((o) => ({
+          id: o.id,
+          title: 'New Order',
+          message: '$' + (o.amountCents / 100).toFixed(2) + ' purchase',
+          time: new Date(o.createdAt).toLocaleDateString(),
+          type: 'order',
+        })),
+      ];
+
+      return notifications
+        .sort((a, b) => b.time.localeCompare(a.time))
+        .slice(0, 10);
+    } catch {
+      return [];
+    }
+  }
+
   public static async listUsers(
     page: number = 1,
     limit: number = 10,
@@ -73,7 +115,7 @@ export class AdminService {
       ];
     }
 
-    const paginationParams = PaginationHelper.getPaginationParams({ page, limit });
+    const paginationParams = PaginationHelper.getPaginationParams({ page, limit }) as any;
 
     const [users, total] = await Promise.all([
       prisma.user.findMany({
@@ -161,19 +203,17 @@ export class AdminService {
       take: 5,
     });
 
-    // Get product names for top products
-    const productIds = topProducts.map((p: { productId: any; }) => p.productId);
+    const productIds = topProducts.map((p) => p.productId);
     const products = await prisma.product.findMany({
       where: { id: { in: productIds } },
       select: { id: true, name: true },
     });
 
-    const productMap = new Map(products.map((p: { id: any; name: any; }) => [p.id, p.name]));
+    const productMap = new Map(products.map((p) => [p.id, p.name]));
 
-    // Aggregate monthly revenue
     const monthlyRevenue = new Map<string, { revenue: number; orders: number }>();
 
-    monthlyOrders.forEach((order: { createdAt: { toISOString: () => string; }; amountCents: number; }) => {
+    monthlyOrders.forEach((order) => {
       const month = order.createdAt.toISOString().substring(0, 7);
       const existing = monthlyRevenue.get(month) || { revenue: 0, orders: 0 };
       monthlyRevenue.set(month, {
@@ -186,17 +226,17 @@ export class AdminService {
       .sort(([a], [b]) => a.localeCompare(b))
       .map(([month, data]) => ({ month, ...data }));
 
-    const totalOrders = ordersByStatus.reduce((sum: any, s: { _count: any; }) => sum + s._count, 0);
+    const totalOrders = ordersByStatus.reduce((sum, s) => sum + s._count, 0);
     const totalRevenue = totalRevenueResult._sum.amountCents || 0;
 
     return {
       totalRevenue,
-      ordersByStatus: ordersByStatus.reduce((acc: any, s: { status: any; _count: any; }) => ({
+      ordersByStatus: ordersByStatus.reduce((acc, s) => ({
         ...acc,
         [s.status]: s._count,
       }), {}),
       revenueByMonth,
-      topProducts: topProducts.map((p: { productId: unknown; _sum: { amountCents: any; }; _count: any; }) => ({
+      topProducts: topProducts.map((p) => ({
         name: productMap.get(p.productId) || 'Unknown',
         revenue: p._sum.amountCents || 0,
         orders: p._count,

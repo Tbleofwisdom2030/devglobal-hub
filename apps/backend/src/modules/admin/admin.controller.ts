@@ -10,11 +10,20 @@ export class AdminController {
   ): Promise<void> {
     try {
       const stats = await AdminService.getDashboardStats();
+      res.json({ success: true, data: stats });
+    } catch (error) {
+      next(error);
+    }
+  }
 
-      res.json({
-        success: true,
-        data: stats,
-      });
+  public static async getNotifications(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> {
+    try {
+      const notifications = await (AdminService as any).getNotifications?.();
+      res.json({ success: true, data: notifications });
     } catch (error) {
       next(error);
     }
@@ -27,17 +36,12 @@ export class AdminController {
   ): Promise<void> {
     try {
       const { page, limit, search } = req.query;
-
       const result = await AdminService.listUsers(
         parseInt(page as string) || 1,
         parseInt(limit as string) || 10,
         search as string
       );
-
-      res.json({
-        success: true,
-        ...result,
-      });
+      res.json({ success: true, ...result });
     } catch (error) {
       next(error);
     }
@@ -49,16 +53,8 @@ export class AdminController {
     next: NextFunction
   ): Promise<void> {
     try {
-      const user = await AdminService.updateUserRole(
-        req.params.id,
-        req.body.role
-      );
-
-      res.json({
-        success: true,
-        message: 'User role updated successfully',
-        data: user,
-      });
+      const user = await AdminService.updateUserRole(req.params.id, req.body.role);
+      res.json({ success: true, message: 'User role updated successfully', data: user });
     } catch (error) {
       next(error);
     }
@@ -71,11 +67,7 @@ export class AdminController {
   ): Promise<void> {
     try {
       const analytics = await AdminService.getSalesAnalytics();
-
-      res.json({
-        success: true,
-        data: analytics,
-      });
+      res.json({ success: true, data: analytics });
     } catch (error) {
       next(error);
     }
@@ -88,11 +80,7 @@ export class AdminController {
   ): Promise<void> {
     try {
       const insights = await AdminService.getAIInsights();
-
-      res.json({
-        success: true,
-        data: insights,
-      });
+      res.json({ success: true, data: insights });
     } catch (error) {
       next(error);
     }
