@@ -1,4 +1,4 @@
-﻿@tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -27,14 +27,14 @@
 /* ????? ????? ???????? ??? ????? */
 .ethiopian-pattern-lalibela {
   background-image: 
-    radial-gradient(circle at 20% 50%, hsl(var(--gold-500) / 0.06) 0%, transparent 50%),
-    radial-gradient(circle at 80% 50%, hsl(var(--gold-500) / 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 20% 50%, rgba(212, 168, 67, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(212, 168, 67, 0.06) 0%, transparent 50%),
     repeating-linear-gradient(
       45deg,
       transparent,
       transparent 15px,
-      hsl(var(--gold-500) / 0.03) 15px,
-      hsl(var(--gold-500) / 0.03) 16px
+      rgba(212, 168, 67, 0.03) 15px,
+      rgba(212, 168, 67, 0.03) 16px
     );
 }
 
@@ -42,15 +42,15 @@
 .ethiopian-pattern-axum {
   background-image: 
     linear-gradient(90deg, 
-      hsl(var(--gold-500) / 0.04) 1px, 
+      rgba(212, 168, 67, 0.04) 1px, 
       transparent 1px,
       transparent 20px,
-      hsl(var(--gold-500) / 0.04) 21px,
+      rgba(212, 168, 67, 0.04) 21px,
       transparent 21px,
       transparent 40px
     ),
     linear-gradient(0deg,
-      hsl(var(--gold-500) / 0.02) 1px,
+      rgba(212, 168, 67, 0.02) 1px,
       transparent 1px,
       transparent 40px
     );
@@ -64,15 +64,15 @@
       0deg,
       transparent,
       transparent 20px,
-      hsl(var(--gold-500) / 0.04) 20px,
-      hsl(var(--gold-500) / 0.04) 21px
+      rgba(212, 168, 67, 0.04) 20px,
+      rgba(212, 168, 67, 0.04) 21px
     ),
     repeating-linear-gradient(
       90deg,
       transparent,
       transparent 20px,
-      hsl(var(--gold-500) / 0.04) 20px,
-      hsl(var(--gold-500) / 0.04) 21px
+      rgba(212, 168, 67, 0.04) 20px,
+      rgba(212, 168, 67, 0.04) 21px
     );
 }
 
@@ -80,7 +80,7 @@
 .ethiopian-pattern-debre-damo {
   background-image: 
     repeating-conic-gradient(
-      hsl(var(--gold-500) / 0.04) 0% 25%,
+      rgba(212, 168, 67, 0.04) 0% 25%,
       transparent 0% 50%
     );
   background-size: 40px 40px;
@@ -89,11 +89,11 @@
 /* ?? ??? ???? - ?? ??? ???? ????? */
 .ethiopian-pattern-tiya {
   background-image: 
-    radial-gradient(circle at 10% 10%, hsl(var(--gold-500) / 0.05) 2px, transparent 2px),
-    radial-gradient(circle at 30% 30%, hsl(var(--gold-500) / 0.03) 2px, transparent 2px),
-    radial-gradient(circle at 50% 50%, hsl(var(--gold-500) / 0.04) 2px, transparent 2px),
-    radial-gradient(circle at 70% 70%, hsl(var(--gold-500) / 0.03) 2px, transparent 2px),
-    radial-gradient(circle at 90% 90%, hsl(var(--gold-500) / 0.05) 2px, transparent 2px);
+    radial-gradient(circle at 10% 10%, rgba(212, 168, 67, 0.05) 2px, transparent 2px),
+    radial-gradient(circle at 30% 30%, rgba(212, 168, 67, 0.03) 2px, transparent 2px),
+    radial-gradient(circle at 50% 50%, rgba(212, 168, 67, 0.04) 2px, transparent 2px),
+    radial-gradient(circle at 70% 70%, rgba(212, 168, 67, 0.03) 2px, transparent 2px),
+    radial-gradient(circle at 90% 90%, rgba(212, 168, 67, 0.05) 2px, transparent 2px);
   background-size: 60px 60px;
 }
 
@@ -104,15 +104,15 @@
       45deg,
       transparent 0px,
       transparent 10px,
-      hsl(var(--earth-500) / 0.03) 10px,
-      hsl(var(--earth-500) / 0.03) 11px
+      rgba(197, 48, 48, 0.03) 10px,
+      rgba(197, 48, 48, 0.03) 11px
     ),
     repeating-linear-gradient(
       -45deg,
       transparent 0px,
       transparent 10px,
-      hsl(var(--gold-500) / 0.03) 10px,
-      hsl(var(--gold-500) / 0.03) 11px
+      rgba(212, 168, 67, 0.03) 10px,
+      rgba(212, 168, 67, 0.03) 11px
     );
 }
 
@@ -121,29 +121,29 @@
    ============================================================ */
 .glass-premium {
   @apply bg-white/[0.04] backdrop-blur-2xl;
-  border: 1px solid hsl(var(--gold-500) / 0.1);
+  border: 1px solid rgba(212, 168, 67, 0.1);
   box-shadow: 
     var(--shadow-premium-lg),
-    inset 0 1px 0 hsl(var(--gold-500) / 0.05);
+    inset 0 1px 0 rgba(212, 168, 67, 0.05);
 }
 
 .dark .glass-premium {
   @apply bg-black/[0.3];
-  border: 1px solid hsl(var(--gold-500) / 0.08);
+  border: 1px solid rgba(212, 168, 67, 0.08);
 }
 
 /* ?????? ?? ??? - ?? ??? ??? ???? */
 .glass-ethiopian {
   @apply bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-2xl;
-  border: 1px solid hsl(var(--gold-500) / 0.15);
+  border: 1px solid rgba(212, 168, 67, 0.15);
   box-shadow: 
     var(--shadow-premium-lg),
-    0 0 40px hsl(var(--gold-500) / 0.05);
+    0 0 40px rgba(212, 168, 67, 0.05);
 }
 
 .dark .glass-ethiopian {
   @apply from-black/20 to-black/40;
-  border: 1px solid hsl(var(--gold-500) / 0.1);
+  border: 1px solid rgba(212, 168, 67, 0.1);
 }
 
 /* ?? ??? ?????? ???? ?? */
@@ -155,7 +155,7 @@
     hsl(var(--background) / 0.5)
   );
   backdrop-filter: blur(20px) saturate(1.5);
-  border: 1px solid hsl(var(--gold-500) / 0.1);
+  border: 1px solid rgba(212, 168, 67, 0.1);
   box-shadow: var(--shadow-premium-md);
 }
 
@@ -167,15 +167,15 @@
       45deg,
       transparent,
       transparent 20px,
-      hsl(var(--gold-500) / 0.03) 20px,
-      hsl(var(--gold-500) / 0.03) 21px
+      rgba(212, 168, 67, 0.03) 20px,
+      rgba(212, 168, 67, 0.03) 21px
     ),
     repeating-linear-gradient(
       -45deg,
       transparent,
       transparent 20px,
-      hsl(var(--gold-500) / 0.03) 20px,
-      hsl(var(--gold-500) / 0.03) 21px
+      rgba(212, 168, 67, 0.03) 20px,
+      rgba(212, 168, 67, 0.03) 21px
     );
   pointer-events: none;
 }
@@ -199,8 +199,8 @@
   @apply absolute inset-0 opacity-0 transition-opacity duration-500;
   background: linear-gradient(
     135deg,
-    hsl(var(--gold-500) / 0.03),
-    hsl(var(--gold-500) / 0.01)
+    rgba(212, 168, 67, 0.03),
+    rgba(212, 168, 67, 0.01)
   );
   pointer-events: none;
 }
@@ -214,10 +214,10 @@
   @apply absolute -inset-[1px] rounded-[inherit] opacity-0 transition-opacity duration-500;
   background: linear-gradient(
     135deg,
-    hsl(var(--gold-400) / 0.2),
+    rgba(251, 209, 24, 0.2),
     hsl(var(--forest-400) / 0.1),
     hsl(var(--earth-400) / 0.1),
-    hsl(var(--gold-400) / 0.2)
+    rgba(251, 209, 24, 0.2)
   );
   z-index: -1;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -254,19 +254,19 @@
     hsl(var(--gold-50) / 0.9),
     hsl(var(--gold-100) / 0.8)
   );
-  border: 1px solid hsl(var(--gold-200) / 0.5);
+  border: 1px solid rgba(253, 235, 158, 0.5);
   box-shadow: 
-    0 8px 32px hsl(var(--gold-500) / 0.15),
-    inset 0 1px 0 hsl(var(--gold-200) / 0.3);
+    0 8px 32px rgba(212, 168, 67, 0.15),
+    inset 0 1px 0 rgba(253, 235, 158, 0.3);
 }
 
 .dark .card-ethiopian-gold {
   background: linear-gradient(
     135deg,
-    hsl(var(--gold-900) / 0.3),
-    hsl(var(--gold-800) / 0.2)
+    rgba(92, 61, 0, 0.3),
+    rgba(128, 90, 35, 0.2)
   );
-  border: 1px solid hsl(var(--gold-500) / 0.15);
+  border: 1px solid rgba(212, 168, 67, 0.15);
 }
 
 /* ============================================================
@@ -281,12 +281,12 @@
   );
   color: white;
   border: none;
-  box-shadow: 0 4px 20px hsl(var(--gold-500) / 0.3);
+  box-shadow: 0 4px 20px rgba(212, 168, 67, 0.3);
 }
 
 .btn-ethiopian:hover {
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 30px hsl(var(--gold-500) / 0.4);
+  box-shadow: 0 8px 30px rgba(212, 168, 67, 0.4);
 }
 
 .btn-ethiopian:active {
@@ -318,7 +318,7 @@
   );
   color: white;
   border: none;
-  box-shadow: 0 4px 20px hsl(var(--gold-500) / 0.25);
+  box-shadow: 0 4px 20px rgba(212, 168, 67, 0.25);
 }
 
 /* ?? ??? ?????? ???? ?? */
@@ -326,7 +326,7 @@
   @apply relative overflow-hidden transition-all duration-300;
   background: hsl(var(--background));
   color: hsl(var(--foreground));
-  border: 1px solid hsl(var(--gold-500) / 0.2);
+  border: 1px solid rgba(212, 168, 67, 0.2);
 }
 
 .btn-ethiopian-pattern::before {
@@ -344,8 +344,8 @@
 }
 
 .btn-ethiopian-pattern:hover {
-  border-color: hsl(var(--gold-500) / 0.4);
-  box-shadow: 0 0 30px hsl(var(--gold-500) / 0.1);
+  border-color: rgba(212, 168, 67, 0.4);
+  box-shadow: 0 0 30px rgba(212, 168, 67, 0.1);
 }
 
 /* ============================================================
@@ -363,7 +363,7 @@
 .input-premium:focus {
   @apply outline-none;
   border-color: hsl(var(--gold-500));
-  box-shadow: 0 0 0 4px hsl(var(--gold-500) / 0.1), var(--shadow-premium-sm);
+  box-shadow: 0 0 0 4px rgba(212, 168, 67, 0.1), var(--shadow-premium-sm);
 }
 
 .input-premium::placeholder {
@@ -385,7 +385,7 @@
   @apply absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-300;
   background: linear-gradient(
     135deg,
-    hsl(var(--gold-400) / 0.2),
+    rgba(251, 209, 24, 0.2),
     hsl(var(--earth-400) / 0.1)
   );
   pointer-events: none;
@@ -397,7 +397,7 @@
 
 .input-ethiopian:focus {
   @apply outline-none border-gold-500;
-  box-shadow: 0 0 0 4px hsl(var(--gold-500) / 0.1);
+  box-shadow: 0 0 0 4px rgba(212, 168, 67, 0.1);
 }
 
 /* ?? ???? ?????? ???? ????? ?? */
@@ -416,26 +416,26 @@
 
 .input-ethiopian-corners .corner-tl {
   @apply top-0 left-0;
-  border-top: 2px solid hsl(var(--gold-500) / 0.2);
-  border-left: 2px solid hsl(var(--gold-500) / 0.2);
+  border-top: 2px solid rgba(212, 168, 67, 0.2);
+  border-left: 2px solid rgba(212, 168, 67, 0.2);
 }
 
 .input-ethiopian-corners .corner-tr {
   @apply top-0 right-0;
-  border-top: 2px solid hsl(var(--gold-500) / 0.2);
-  border-right: 2px solid hsl(var(--gold-500) / 0.2);
+  border-top: 2px solid rgba(212, 168, 67, 0.2);
+  border-right: 2px solid rgba(212, 168, 67, 0.2);
 }
 
 .input-ethiopian-corners .corner-bl {
   @apply bottom-0 left-0;
-  border-bottom: 2px solid hsl(var(--gold-500) / 0.2);
-  border-left: 2px solid hsl(var(--gold-500) / 0.2);
+  border-bottom: 2px solid rgba(212, 168, 67, 0.2);
+  border-left: 2px solid rgba(212, 168, 67, 0.2);
 }
 
 .input-ethiopian-corners .corner-br {
   @apply bottom-0 right-0;
-  border-bottom: 2px solid hsl(var(--gold-500) / 0.2);
-  border-right: 2px solid hsl(var(--gold-500) / 0.2);
+  border-bottom: 2px solid rgba(212, 168, 67, 0.2);
+  border-right: 2px solid rgba(212, 168, 67, 0.2);
 }
 
 .input-ethiopian-corners:focus-within .corner {
@@ -451,26 +451,26 @@
 
 .corner-decoration-tl {
   @apply top-0 left-0;
-  border-top: 2px solid hsl(var(--gold-500) / 0.3);
-  border-left: 2px solid hsl(var(--gold-500) / 0.3);
+  border-top: 2px solid rgba(212, 168, 67, 0.3);
+  border-left: 2px solid rgba(212, 168, 67, 0.3);
 }
 
 .corner-decoration-tr {
   @apply top-0 right-0;
-  border-top: 2px solid hsl(var(--gold-500) / 0.3);
-  border-right: 2px solid hsl(var(--gold-500) / 0.3);
+  border-top: 2px solid rgba(212, 168, 67, 0.3);
+  border-right: 2px solid rgba(212, 168, 67, 0.3);
 }
 
 .corner-decoration-bl {
   @apply bottom-0 left-0;
-  border-bottom: 2px solid hsl(var(--gold-500) / 0.3);
-  border-left: 2px solid hsl(var(--gold-500) / 0.3);
+  border-bottom: 2px solid rgba(212, 168, 67, 0.3);
+  border-left: 2px solid rgba(212, 168, 67, 0.3);
 }
 
 .corner-decoration-br {
   @apply bottom-0 right-0;
-  border-bottom: 2px solid hsl(var(--gold-500) / 0.3);
-  border-right: 2px solid hsl(var(--gold-500) / 0.3);
+  border-bottom: 2px solid rgba(212, 168, 67, 0.3);
+  border-right: 2px solid rgba(212, 168, 67, 0.3);
 }
 
 /* ?? ?????? ???? ???? */
@@ -480,15 +480,15 @@
 
 .corner-cross-tl {
   @apply top-2 left-2;
-  border-top: 2px solid hsl(var(--gold-500) / 0.3);
-  border-left: 2px solid hsl(var(--gold-500) / 0.3);
+  border-top: 2px solid rgba(212, 168, 67, 0.3);
+  border-left: 2px solid rgba(212, 168, 67, 0.3);
 }
 
 .corner-cross-tl::after {
   content: '';
   @apply absolute -top-1 -left-1 w-3 h-3;
-  border-top: 2px solid hsl(var(--gold-500) / 0.3);
-  border-left: 2px solid hsl(var(--gold-500) / 0.3);
+  border-top: 2px solid rgba(212, 168, 67, 0.3);
+  border-left: 2px solid rgba(212, 168, 67, 0.3);
 }
 
 /* ============================================================
@@ -530,9 +530,9 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    hsl(var(--gold-500) / 0.05) 25%,
-    hsl(var(--gold-500) / 0.15) 50%,
-    hsl(var(--gold-500) / 0.05) 75%,
+    rgba(212, 168, 67, 0.05) 25%,
+    rgba(212, 168, 67, 0.15) 50%,
+    rgba(212, 168, 67, 0.05) 75%,
     transparent 100%
   );
   background-size: 200% 100%;
@@ -548,10 +548,10 @@
 .wave-ethiopian {
   background: linear-gradient(
     90deg,
-    hsl(var(--gold-500) / 0.1),
-    hsl(var(--forest-500) / 0.1),
-    hsl(var(--earth-500) / 0.1),
-    hsl(var(--gold-500) / 0.1)
+    rgba(212, 168, 67, 0.1),
+    rgba(27, 138, 74, 0.1),
+    rgba(197, 48, 48, 0.1),
+    rgba(212, 168, 67, 0.1)
   );
   background-size: 300% 100%;
   animation: waveEthiopian 4s ease-in-out infinite;
@@ -590,9 +590,9 @@
   padding: 1px;
   background: linear-gradient(
     135deg,
-    hsl(var(--gold-400) / 0.3),
-    hsl(var(--gold-500) / 0.5),
-    hsl(var(--gold-400) / 0.3)
+    rgba(251, 209, 24, 0.3),
+    rgba(212, 168, 67, 0.5),
+    rgba(251, 209, 24, 0.3)
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -627,7 +627,7 @@
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 2px 20px hsl(var(--gold-500) / 0.2);
+  text-shadow: 0 2px 20px rgba(212, 168, 67, 0.2);
 }
 
 /* ?? ?????? ????? ??? */
@@ -635,8 +635,8 @@
   @apply relative px-4 py-2 rounded-lg;
   background: linear-gradient(
     135deg,
-    hsl(var(--gold-500) / 0.08),
-    hsl(var(--forest-500) / 0.05)
+    rgba(212, 168, 67, 0.08),
+    rgba(27, 138, 74, 0.05)
   );
   border-left: 3px solid hsl(var(--gold-500));
 }
@@ -694,9 +694,9 @@
   background: linear-gradient(
     90deg,
     transparent,
-    hsl(var(--gold-500) / 0.2),
-    hsl(var(--gold-500) / 0.3),
-    hsl(var(--gold-500) / 0.2),
+    rgba(212, 168, 67, 0.2),
+    rgba(212, 168, 67, 0.3),
+    rgba(212, 168, 67, 0.2),
     transparent
   );
 }
@@ -705,9 +705,9 @@
   @apply inline-block h-0.5 w-12;
   background: linear-gradient(
     90deg,
-    hsl(var(--gold-500) / 0.1),
-    hsl(var(--gold-500) / 0.5),
-    hsl(var(--gold-500) / 0.1)
+    rgba(212, 168, 67, 0.1),
+    rgba(212, 168, 67, 0.5),
+    rgba(212, 168, 67, 0.1)
   );
   border-radius: var(--radius-full);
 }
@@ -724,21 +724,21 @@
   background: linear-gradient(
     90deg,
     transparent,
-    hsl(var(--gold-500) / 0.2)
+    rgba(212, 168, 67, 0.2)
   );
 }
 
 .separator-ethiopian::after {
   background: linear-gradient(
     90deg,
-    hsl(var(--gold-500) / 0.2),
+    rgba(212, 168, 67, 0.2),
     transparent
   );
 }
 
 .separator-ethiopian .ornament {
   @apply w-2 h-2 rotate-45;
-  background: hsl(var(--gold-500) / 0.3);
+  background: rgba(212, 168, 67, 0.3);
   border-radius: 1px;
 }
 
@@ -750,14 +750,14 @@
 .frame-ethiopian::before {
   content: '';
   @apply absolute inset-0;
-  border: 1px solid hsl(var(--gold-500) / 0.1);
+  border: 1px solid rgba(212, 168, 67, 0.1);
   border-radius: var(--radius-lg);
 }
 
 .frame-ethiopian::after {
   content: '';
   @apply absolute inset-4 pointer-events-none;
-  border: 1px solid hsl(var(--gold-500) / 0.05);
+  border: 1px solid rgba(212, 168, 67, 0.05);
   border-radius: var(--radius-md);
 }
 
@@ -774,19 +774,19 @@
 
 ::-webkit-scrollbar-thumb {
   @apply rounded-full;
-  background: hsl(var(--gold-500) / 0.3);
+  background: rgba(212, 168, 67, 0.3);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--gold-500) / 0.5);
+  background: rgba(212, 168, 67, 0.5);
 }
 
 /* ?? ?????? ???? ?? */
 .scrollbar-ethiopian::-webkit-scrollbar-thumb {
   background: linear-gradient(
-    hsl(var(--gold-500) / 0.3),
-    hsl(var(--forest-500) / 0.3),
-    hsl(var(--earth-500) / 0.3)
+    rgba(212, 168, 67, 0.3),
+    rgba(27, 138, 74, 0.3),
+    rgba(197, 48, 48, 0.3)
   );
 }
 
@@ -794,12 +794,12 @@
    ?? ????? ?? ?????? (Final Polish)
    ============================================================ */
 ::selection {
-  background: hsl(var(--gold-500) / 0.2);
+  background: rgba(212, 168, 67, 0.2);
   color: hsl(var(--gold-500));
 }
 
 .dark ::selection {
-  background: hsl(var(--gold-500) / 0.3);
+  background: rgba(212, 168, 67, 0.3);
   color: hsl(var(--gold-400));
 }
 
