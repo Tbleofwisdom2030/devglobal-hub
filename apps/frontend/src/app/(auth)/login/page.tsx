@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginSchema, type LoginFormData } from '@devglobal/shared';
 import { Button, Input, Card } from '@devglobal/ui';
+import { apiClient } from '@/lib/api-client';
 import { useAuth } from '@/hooks/use-auth';
 import { Eye, EyeOff, Loader2, ArrowRight } from 'lucide-react';
 
@@ -28,9 +29,26 @@ function LoginForm() {
   const onSubmit = async (data: LoginFormData) => {
     setError('');
     try {
-      await login(data.email, data.password);
+      const response = await apiClient.post('/auth/login', {
+        email: data.email,
+        password: data.password,
+      });
+
+      const { user, accessToken } = response.data.data;
+      
+      // Store token
+      localStorage.setItem('accessToken', accessToken);
+      
       const redirect = searchParams.get('redirect');
-      router.push(redirect || '/dashboard');
+
+      // Redirect based on role
+      if (user.role === 'ADMIN') {
+        router.push('/admin');
+      } else if (redirect) {
+        router.push(redirect);
+      } else {
+        router.push('/dashboard');
+      }
     } catch (error: any) {
       setError(error.response?.data?.error || 'Invalid email or password');
     }
