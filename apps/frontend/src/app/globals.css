@@ -2,19 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ===== ፕሪሚየም ፎንቶች (Premium Fonts) ===== */
+/* ============================================================
+   🎨 ፕሪሚየም ፎንቶች (Premium Fonts)
+   ============================================================ */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
-/* ካቢኔት ግሮቴስክ እና ክላሽ ዲስፕሌይ ለፕሮዳክሽን በCDN ወይም በሎካል ፋይል መጠቀም ይመረጣል። 
-   እዚህ ላይ እንደ @font-face ልገልጻቸው ነው። */
-@font-face {
-  font-family: 'Clash Display';
-  src: url('/fonts/ClashDisplay-Variable.woff2') format('woff2');
-  font-weight: 200 800;
-  font-display: swap;
-  font-style: normal;
-}
-
+/* ካቢኔት ግሮቴስክ - ለርዕሶች ፕሪሚየም ፎንት */
 @font-face {
   font-family: 'Cabinet Grotesk';
   src: url('/fonts/CabinetGrotesk-Variable.woff2') format('woff2');
@@ -23,386 +16,304 @@
   font-style: normal;
 }
 
-@layer base {
-  :root {
-    /* ===== 1. ዋና የገጽታ ቀለማት (Surface Colors) ===== */
-    /* ከነባሩ በተለየ መልኩ ሞቅ ያለና ጥልቀት ያለው ዳራ */
-    --background: 40 30% 98%;  /* ሞቅ ያለ ነጭ - እንደ ኢትዮጵያዊ ጥጥ */
-    --foreground: 220 15% 10%; /* ለስላም ጥቁር - ለዓይን ምቹ */
-    
-    --card: 0 0% 100%;
-    --card-foreground: 220 15% 10%;
-    
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 15% 10%;
-
-    /* ===== 2. የኢትዮጵያ ቀለማት በዘመናዊ አቀራረብ ===== */
-    /* ሮያል ጎልድ (ከወርቅ አክሱማውያን ሳንቲሞች ተመስጦ) */
-    --gold-50: 46 100% 97%;
-    --gold-100: 45 100% 88%;
-    --gold-200: 45 100% 75%;
-    --gold-300: 43 85% 58%;
-    --gold-400: 41 80% 48%;
-    --gold-500: 38 75% 40%;   /* ዋናው ጎልድ */
-    --gold-600: 35 70% 33%;
-    --gold-700: 30 65% 25%;
-    --gold-800: 25 60% 18%;
-    --gold-900: 20 55% 12%;
-
-    /* ፎረስት ግሪን (ከኢትዮጵያ ደኖች ተመስጦ) */
-    --forest-50: 140 60% 97%;
-    --forest-100: 140 55% 90%;
-    --forest-200: 140 50% 80%;
-    --forest-300: 140 45% 65%;
-    --forest-400: 140 40% 50%;
-    --forest-500: 140 50% 32%;  /* ዋናው አረንጓዴ */
-    --forest-600: 140 55% 24%;
-    --forest-700: 140 60% 18%;
-    --forest-800: 140 65% 12%;
-    --forest-900: 140 70% 8%;
-
-    /* ኧርዝ ሬድ (ከኢትዮጵያ መሬት ተመስጦ) */
-    --earth-50: 0 70% 97%;
-    --earth-100: 0 65% 90%;
-    --earth-200: 0 60% 80%;
-    --earth-300: 0 55% 70%;
-    --earth-400: 0 60% 55%;
-    --earth-500: 0 65% 42%;    /* ዋናው ቀይ */
-    --earth-600: 0 70% 34%;
-    --earth-700: 0 75% 26%;
-    --earth-800: 0 80% 18%;
-    --earth-900: 0 85% 12%;
-
-    /* ===== 3. ፕሪሚየም ሼዶውስ (Shadows) ===== */
-    /* ለስላሳና ባለብዙ ሽፋን ሼዶው */
-    --shadow-premium-sm: 0px 2px 4px rgba(0, 0, 0, 0.02), 0px 4px 8px rgba(0, 0, 0, 0.02);
-    --shadow-premium-md: 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 8px 16px rgba(0, 0, 0, 0.04);
-    --shadow-premium-lg: 0px 8px 16px rgba(0, 0, 0, 0.06), 0px 16px 32px rgba(0, 0, 0, 0.06);
-    --shadow-premium-xl: 0px 16px 32px rgba(0, 0, 0, 0.08), 0px 32px 64px rgba(0, 0, 0, 0.08);
-    --shadow-glow-gold: 0 0 25px rgba(212, 168, 67, 0.15);
-
-    /* ===== 4. ፕሪሚየም ቦርደሮች ===== */
-    --border-subtle: 220 20% 94%;
-    --border-default: 220 15% 88%;
-    --border-hover: 220 10% 80%;
-    --border-focus: 38 75% 40%;  /* ጎልድ ላይ ፎከስ */
-
-    /* ===== 5. ተግባራዊ ቀለማት ===== */
-    --primary: 38 75% 40%;       /* ጎልድ እንደ ዋና ፕራይመሪ */
-    --primary-foreground: 0 0% 100%;
-    
-    --secondary: 140 50% 32%;    /* አረንጓዴ እንደ ሴኮንደሪ */
-    --secondary-foreground: 0 0% 100%;
-    
-    --muted: 220 20% 96%;
-    --muted-foreground: 220 10% 46%;
-    
-    --accent: 0 65% 42%;         /* ቀይ እንደ አክሰንት */
-    --accent-foreground: 0 0% 100%;
-    
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
-    
-    --ring: 38 75% 40%;          /* ጎልድ ሪንግ */
-
-    /* ===== 6. ፕሪሚየም ሬዲየስ ===== */
-    --radius-sm: 0.5rem;
-    --radius-md: 0.75rem;
-    --radius-lg: 1rem;
-    --radius-xl: 1.25rem;
-    --radius-2xl: 1.5rem;
-    --radius-3xl: 2rem;
-  }
-
-  .dark {
-    /* ===== 1. ዋና የገጽታ ቀለማት (Dark Mode) ===== */
-    --background: 220 15% 4%;    /* ጥልቅ ጥቁር - እንደ ሌሊት ሰማይ */
-    --foreground: 40 20% 92%;    /* ለስላም ነጭ */
-    
-    --card: 220 15% 6%;
-    --card-foreground: 40 20% 92%;
-    
-    --popover: 220 15% 6%;
-    --popover-foreground: 40 20% 92%;
-
-    /* ===== 2. የኢትዮጵያ ቀለማት (Dark Mode) ===== */
-    /* በጨለማ ሁኔታ የሚያንጸባርቁ ወርቃማ ቀለማት */
-    --gold-50: 45 100% 8%;
-    --gold-100: 44 80% 12%;
-    --gold-200: 43 75% 18%;
-    --gold-300: 42 80% 28%;
-    --gold-400: 40 85% 38%;
-    --gold-500: 38 75% 48%;     /* ብሩህ ጎልድ ለዳርክ ሞድ */
-    --gold-600: 36 70% 58%;
-    --gold-700: 34 65% 68%;
-    --gold-800: 32 60% 78%;
-    --gold-900: 30 55% 88%;
-
-    --forest-50: 140 40% 8%;
-    --forest-100: 140 45% 12%;
-    --forest-200: 140 50% 18%;
-    --forest-300: 140 55% 24%;
-    --forest-400: 140 60% 32%;
-    --forest-500: 140 50% 40%;
-    --forest-600: 140 45% 50%;
-    --forest-700: 140 40% 60%;
-    --forest-800: 140 35% 75%;
-    --forest-900: 140 30% 88%;
-
-    --earth-50: 0 50% 8%;
-    --earth-100: 0 55% 12%;
-    --earth-200: 0 60% 18%;
-    --earth-300: 0 65% 24%;
-    --earth-400: 0 70% 32%;
-    --earth-500: 0 65% 44%;
-    --earth-600: 0 60% 54%;
-    --earth-700: 0 55% 64%;
-    --earth-800: 0 50% 75%;
-    --earth-900: 0 45% 88%;
-
-    /* ===== 3. ፕሪሚየም ሼዶውስ (Dark Mode) ===== */
-    --shadow-premium-sm: 0px 2px 4px rgba(0, 0, 0, 0.3), 0px 4px 8px rgba(0, 0, 0, 0.2);
-    --shadow-premium-md: 0px 4px 8px rgba(0, 0, 0, 0.4), 0px 8px 16px rgba(0, 0, 0, 0.3);
-    --shadow-premium-lg: 0px 8px 16px rgba(0, 0, 0, 0.5), 0px 16px 32px rgba(0, 0, 0, 0.4);
-    --shadow-premium-xl: 0px 16px 32px rgba(0, 0, 0, 0.6), 0px 32px 64px rgba(0, 0, 0, 0.5);
-    --shadow-glow-gold: 0 0 35px rgba(212, 168, 67, 0.25);
-
-    /* ===== 4. ተግባራዊ ቀለማት (Dark Mode) ===== */
-    --border-subtle: 220 15% 12%;
-    --border-default: 220 10% 18%;
-    --border-hover: 220 8% 25%;
-    --border-focus: 38 75% 48%;
-    
-    --primary: 38 75% 48%;
-    --primary-foreground: 220 15% 4%;
-    
-    --secondary: 140 50% 40%;
-    --secondary-foreground: 220 15% 4%;
-    
-    --muted: 220 15% 12%;
-    --muted-foreground: 220 10% 60%;
-    
-    --accent: 0 65% 44%;
-    --accent-foreground: 220 15% 4%;
-    
-    --destructive: 0 70% 50%;
-    --destructive-foreground: 0 0% 100%;
-    
-    --ring: 38 75% 48%;
-  }
+/* ክላሽ ዲስፕሌይ - ለልዩ አርዕስት እና ታይትሎች */
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/fonts/ClashDisplay-Variable.woff2') format('woff2');
+  font-weight: 200 800;
+  font-display: swap;
+  font-style: normal;
 }
 
-@layer base {
-  * {
-    @apply border-border-default;
-  }
-  body {
-    @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', sans-serif;
-    /* ፕሪሚየም ፎንት ፊቸርስ */
-    font-feature-settings: "cv01", "cv02", "cv03", "ss01", "ss02";
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  
-  /* ለርዕሶች የሚሆን ፕሪሚየም ፎንት */
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Cabinet Grotesk', 'Clash Display', sans-serif;
-    @apply font-bold tracking-tight;
-    letter-spacing: -0.02em;
-  }
-  
-  h1 { @apply text-5xl md:text-6xl lg:text-7xl; }
-  h2 { @apply text-4xl md:text-5xl lg:text-6xl; }
-  h3 { @apply text-2xl md:text-3xl; }
+/* ============================================================
+   🎨 የራዲየስ ተለዋዋጮች (Radius Variables)
+   ============================================================ */
+:root {
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  --radius-full: 9999px;
 }
 
-@layer components {
-  /* ===== 1. የኢትዮጵያ ጥልምም ፓተርኖች (Ethiopian Telsem Patterns) ===== */
-  
-  /* ዳይመንድ ፓተርን - ከኢትዮጵያዊ ጌጣጌጥ የተወሰደ */
-  .ethiopian-pattern-diamonds {
-    background-color: transparent;
-    background-image: 
-      linear-gradient(45deg, hsl(var(--gold-500) / 0.1) 1px, transparent 1px),
-      linear-gradient(-45deg, hsl(var(--gold-500) / 0.1) 1px, transparent 1px);
-    background-size: 20px 20px;
-    background-position: center;
-  }
-
-  /* የመስመር ፓተርን - በባህላዊ ሽመና ተመስጦ */
-  .ethiopian-pattern-lines {
-    background: repeating-linear-gradient(
+/* ============================================================
+   🎨 የኢትዮጵያ ጥልምም ተጨማሪ ፓተርኖች (Ethiopian Patterns - Extended)
+   ============================================================ */
+/* ከላሊበላ የድንጋይ ቤተክርስቲያን ቅርፅ የተወሰደ */
+.ethiopian-pattern-lalibela {
+  background-image: 
+    radial-gradient(circle at 20% 50%, hsl(var(--gold-500) / 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, hsl(var(--gold-500) / 0.06) 0%, transparent 50%),
+    repeating-linear-gradient(
       45deg,
       transparent,
-      transparent 5px,
-      hsl(var(--gold-500) / 0.05) 5px,
-      hsl(var(--gold-500) / 0.05) 10px
+      transparent 15px,
+      hsl(var(--gold-500) / 0.03) 15px,
+      hsl(var(--gold-500) / 0.03) 16px
     );
-  }
-
-  /* የመስቀል ፓተርን - ከላሊበላ መስቀሎች ተመስጦ */
-  .ethiopian-pattern-cross {
-    background-image: 
-      radial-gradient(circle at 10px 10px, hsl(var(--gold-500) / 0.08) 1px, transparent 1px),
-      radial-gradient(circle at 30px 30px, hsl(var(--gold-500) / 0.08) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--gold-500) / 0.05) 1px, transparent 1px),
-      linear-gradient(0deg, hsl(var(--gold-500) / 0.05) 1px, transparent 1px);
-    background-size: 40px 40px, 40px 40px, 20px 20px, 20px 20px;
-  }
-
-  /* ===== 2. ፕሪሚየም ግላስ ውጤቶች (Glassmorphism) ===== */
-  .glass-card {
-    @apply bg-white/60 backdrop-blur-xl border border-border-subtle;
-    box-shadow: var(--shadow-premium-md);
-  }
-  
-  .dark .glass-card {
-    @apply bg-black/40 backdrop-blur-xl border border-white/[0.06];
-    box-shadow: var(--shadow-premium-md);
-  }
-
-  .glass-card-heavy {
-    @apply bg-white/80 backdrop-blur-2xl border border-border-default;
-    box-shadow: var(--shadow-premium-lg);
-  }
-  
-  .dark .glass-card-heavy {
-    @apply bg-black/60 backdrop-blur-2xl border border-white/[0.08];
-    box-shadow: var(--shadow-premium-lg);
-  }
-
-  /* ===== 3. ፕሪሚየም ግራዲየንቶች ===== */
-  .gradient-text-gold {
-    background: linear-gradient(135deg, hsl(var(--gold-400)), hsl(var(--gold-600)), hsl(var(--gold-400)));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 200% 200%;
-    animation: gradient-shift 3s ease infinite;
-  }
-
-  .gradient-text-ethiopian {
-    background: linear-gradient(135deg, hsl(var(--forest-500)), hsl(var(--gold-500)), hsl(var(--earth-500)));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 200% 200%;
-    animation: gradient-shift 4s ease infinite;
-  }
-
-  .gradient-bg-ethiopian {
-    background: linear-gradient(135deg, hsl(var(--forest-500)), hsl(var(--gold-500)), hsl(var(--earth-500)));
-  }
-
-  /* ===== 4. ፕሪሚየም ሆቨር ውጤት ===== */
-  .hover-lift {
-    @apply transition-all duration-300 ease-out;
-  }
-  .hover-lift:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-premium-lg);
-  }
-
-  .ethiopian-border-glow {
-    @apply relative;
-  }
-  .ethiopian-border-glow::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 1px;
-    background: linear-gradient(135deg, hsl(var(--gold-400)), hsl(var(--earth-400)), hsl(var(--forest-400)), hsl(var(--gold-400)));
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-  }
-  .ethiopian-border-glow:hover::before {
-    opacity: 1;
-  }
-
-  /* ===== 5. አኒሜሽኖች ===== */
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-  
-  .animate-shimmer {
-    background: linear-gradient(90deg, transparent 0%, hsl(var(--gold-500) / 0.08) 50%, transparent 100%);
-    background-size: 200% 100%;
-    animation: shimmer 2s infinite;
-  }
-
-  .animate-ethiopian-spin {
-    border: 2px solid hsl(var(--border-default));
-    border-top-color: hsl(var(--gold-500));
-    border-right-color: hsl(var(--earth-500));
-    border-bottom-color: hsl(var(--forest-500));
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-  }
-
-  .stagger-children > * {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fade-in-up 0.6s ease forwards;
-  }
-  .stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
-  .stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
-  .stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
-  .stagger-children > *:nth-child(4) { animation-delay: 0.2s; }
-  .stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
-  .stagger-children > *:nth-child(6) { animation-delay: 0.3s; }
 }
 
-@layer utilities {
-  .font-clash {
-    font-family: 'Clash Display', sans-serif;
-  }
-  .font-cabinet {
-    font-family: 'Cabinet Grotesk', sans-serif;
-  }
-  .font-mono {
-    font-family: 'JetBrains Mono', monospace;
-  }
-  
-  /* ፕሪሚየም ሼዶው ክላሶች */
-  .shadow-premium-sm { box-shadow: var(--shadow-premium-sm); }
-  .shadow-premium-md { box-shadow: var(--shadow-premium-md); }
-  .shadow-premium-lg { box-shadow: var(--shadow-premium-lg); }
-  .shadow-premium-xl { box-shadow: var(--shadow-premium-xl); }
-  .shadow-glow-gold { box-shadow: var(--shadow-glow-gold); }
+/* የአክሱም ኦቤሊስክ ተመስጦ - አቀባዊ መስመሮች */
+.ethiopian-pattern-axum {
+  background-image: 
+    linear-gradient(90deg, 
+      hsl(var(--gold-500) / 0.04) 1px, 
+      transparent 1px,
+      transparent 20px,
+      hsl(var(--gold-500) / 0.04) 21px,
+      transparent 21px,
+      transparent 40px
+    ),
+    linear-gradient(0deg,
+      hsl(var(--gold-500) / 0.02) 1px,
+      transparent 1px,
+      transparent 40px
+    );
+  background-size: 40px 100%, 100% 40px;
 }
 
-/* ===== ኪፍሬም አኒሜሽኖች ===== */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
+/* የባህረ ሰላጤ ተሻጋሪ ስርዓት - ባህላዊ ጌጣጌጥ */
+.ethiopian-pattern-geometric {
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 20px,
+      hsl(var(--gold-500) / 0.04) 20px,
+      hsl(var(--gold-500) / 0.04) 21px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 20px,
+      hsl(var(--gold-500) / 0.04) 20px,
+      hsl(var(--gold-500) / 0.04) 21px
+    );
 }
 
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+/* 🆕 የደብረ ዳሞ ተመስጦ - ፒክሰል ፓተርን */
+.ethiopian-pattern-debre-damo {
+  background-image: 
+    repeating-conic-gradient(
+      hsl(var(--gold-500) / 0.04) 0% 25%,
+      transparent 0% 50%
+    );
+  background-size: 40px 40px;
 }
 
-@keyframes gradient-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+/* 🆕 የቲያ ተመስጦ - ክብ ቅርፅ ያላቸው ድንጋዮች */
+.ethiopian-pattern-tiya {
+  background-image: 
+    radial-gradient(circle at 10% 10%, hsl(var(--gold-500) / 0.05) 2px, transparent 2px),
+    radial-gradient(circle at 30% 30%, hsl(var(--gold-500) / 0.03) 2px, transparent 2px),
+    radial-gradient(circle at 50% 50%, hsl(var(--gold-500) / 0.04) 2px, transparent 2px),
+    radial-gradient(circle at 70% 70%, hsl(var(--gold-500) / 0.03) 2px, transparent 2px),
+    radial-gradient(circle at 90% 90%, hsl(var(--gold-500) / 0.05) 2px, transparent 2px);
+  background-size: 60px 60px;
 }
 
-@keyframes fade-in-up {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* 🆕 የሐረር ተመስጦ - ጂጂማ ቤቶች ጠርዝ */
+.ethiopian-pattern-harar {
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      transparent 0px,
+      transparent 10px,
+      hsl(var(--earth-500) / 0.03) 10px,
+      hsl(var(--earth-500) / 0.03) 11px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0px,
+      transparent 10px,
+      hsl(var(--gold-500) / 0.03) 10px,
+      hsl(var(--gold-500) / 0.03) 11px
+    );
 }
 
-@keyframes pulse-gold {
-  0%, 100% { box-shadow: 0 0 0 0 hsl(var(--gold-500) / 0.4); }
-  50% { box-shadow: 0 0 0 10px hsl(var(--gold-500) / 0); }
+/* ============================================================
+   🎨 የተሻሻሉ ግላስ ውጤቶች (Enhanced Glass Effects)
+   ============================================================ */
+.glass-premium {
+  @apply bg-white/[0.04] backdrop-blur-2xl;
+  border: 1px solid hsl(var(--gold-500) / 0.1);
+  box-shadow: 
+    var(--shadow-premium-lg),
+    inset 0 1px 0 hsl(var(--gold-500) / 0.05);
+}
+
+.dark .glass-premium {
+  @apply bg-black/[0.3];
+  border: 1px solid hsl(var(--gold-500) / 0.08);
+}
+
+/* የኢትዮጵያ ልዩ ግላስ - ባለ ጠርዝ ጎልድ ኤፌክት */
+.glass-ethiopian {
+  @apply bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-2xl;
+  border: 1px solid hsl(var(--gold-500) / 0.15);
+  box-shadow: 
+    var(--shadow-premium-lg),
+    0 0 40px hsl(var(--gold-500) / 0.05);
+}
+
+.dark .glass-ethiopian {
+  @apply from-black/20 to-black/40;
+  border: 1px solid hsl(var(--gold-500) / 0.1);
+}
+
+/* 🆕 ግላስ ከኢትዮጵያ ፓተርን ጋር */
+.glass-ethiopian-pattern {
+  @apply relative overflow-hidden;
+  background: linear-gradient(
+    135deg,
+    hsl(var(--background) / 0.3),
+    hsl(var(--background) / 0.5)
+  );
+  backdrop-filter: blur(20px) saturate(1.5);
+  border: 1px solid hsl(var(--gold-500) / 0.1);
+  box-shadow: var(--shadow-premium-md);
+}
+
+.glass-ethiopian-pattern::before {
+  content: '';
+  @apply absolute inset-0 opacity-30;
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 20px,
+      hsl(var(--gold-500) / 0.03) 20px,
+      hsl(var(--gold-500) / 0.03) 21px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 20px,
+      hsl(var(--gold-500) / 0.03) 20px,
+      hsl(var(--gold-500) / 0.03) 21px
+    );
+  pointer-events: none;
+}
+
+/* ============================================================
+   🎨 ፕሪሚየም ካርድ ውጤቶች (Premium Card Effects)
+   ============================================================ */
+.card-premium {
+  @apply relative overflow-hidden;
+  background: linear-gradient(
+    145deg,
+    hsl(var(--card) / 0.8),
+    hsl(var(--card) / 0.95)
+  );
+  border: 1px solid hsl(var(--border-subtle));
+  box-shadow: var(--shadow-premium-md);
+}
+
+.card-premium::before {
+  content: '';
+  @apply absolute inset-0 opacity-0 transition-opacity duration-500;
+  background: linear-gradient(
+    135deg,
+    hsl(var(--gold-500) / 0.03),
+    hsl(var(--gold-500) / 0.01)
+  );
+  pointer-events: none;
+}
+
+.card-premium:hover::before {
+  @apply opacity-100;
+}
+
+.card-premium::after {
+  content: '';
+  @apply absolute -inset-[1px] rounded-[inherit] opacity-0 transition-opacity duration-500;
+  background: linear-gradient(
+    135deg,
+    hsl(var(--gold-400) / 0.2),
+    hsl(var(--forest-400) / 0.1),
+    hsl(var(--earth-400) / 0.1),
+    hsl(var(--gold-400) / 0.2)
+  );
+  z-index: -1;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  padding: 1px;
+}
+
+.card-premium:hover::after {
+  @apply opacity-100;
+}
+
+/* ከፍተኛ ደረጃ ያለው ነቀል ካርድ (Neumorphic Card) */
+.card-neumorphic {
+  background: hsl(var(--background));
+  border-radius: var(--radius-xl);
+  box-shadow: 
+    12px 12px 24px hsl(var(--shadow) / 0.1),
+    -12px -12px 24px hsl(var(--highlight) / 0.5);
+}
+
+.dark .card-neumorphic {
+  box-shadow: 
+    12px 12px 24px hsl(var(--shadow) / 0.2),
+    -12px -12px 24px hsl(var(--highlight) / 0.1);
+}
+
+/* 🆕 የኢትዮጵያ ወርቅ ካርድ */
+.card-ethiopian-gold {
+  @apply relative overflow-hidden;
+  background: linear-gradient(
+    135deg,
+    hsl(var(--gold-50) / 0.9),
+    hsl(var(--gold-100) / 0.8)
+  );
+  border: 1px solid hsl(var(--gold-200) / 0.5);
+  box-shadow: 
+    0 8px 32px hsl(var(--gold-500) / 0.15),
+    inset 0 1px 0 hsl(var(--gold-200) / 0.3);
+}
+
+.dark .card-ethiopian-gold {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--gold-900) / 0.3),
+    hsl(var(--gold-800) / 0.2)
+  );
+  border: 1px solid hsl(var(--gold-500) / 0.15);
+}
+
+/* ============================================================
+   🎨 ፕሪሚየም ቡቶን ውጤቶች (Premium Button Effects)
+   ============================================================ */
+.btn-ethiopian {
+  @apply relative overflow-hidden transition-all duration-300;
+  background: linear-gradient(
+    135deg,
+    hsl(var(--gold-500)),
+    hsl(var(--gold-600))
+  );
+  color: white;
+  border: none;
+  box-shadow: 0 4px 20px hsl(var(--gold-500) / 0.3);
+}
+
+.btn-ethiopian:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 30px hsl(var(--gold-500) / 0.4);
+}
+
+.btn-ethiopian:active {
+  transform: scale(0.98);
+}
+
+/* የጎልድ ሪፕል ኤፌክት */
+.btn-ethiopian .ripple {
+  @apply absolute rounded-full bg-white/30;
+  transform: scale(0);
+  animation: ripple 0.6s linear;
 }
 
 @keyframes ripple {
@@ -411,3 +322,556 @@
     opacity: 0;
   }
 }
+
+/* የኢትዮጵያ ባንዴራ ቡቶን (Flag Button) */
+.btn-flag {
+  @apply relative overflow-hidden;
+  background: linear-gradient(
+    90deg,
+    hsl(var(--forest-500)) 33%,
+    hsl(var(--gold-500)) 33% 66%,
+    hsl(var(--earth-500)) 66%
+  );
+  color: white;
+  border: none;
+  box-shadow: 0 4px 20px hsl(var(--gold-500) / 0.25);
+}
+
+/* 🆕 ቡቶን ከኢትዮጵያ ፓተርን ጋር */
+.btn-ethiopian-pattern {
+  @apply relative overflow-hidden transition-all duration-300;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  border: 1px solid hsl(var(--gold-500) / 0.2);
+}
+
+.btn-ethiopian-pattern::before {
+  content: '';
+  @apply absolute inset-0 opacity-5;
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      hsl(var(--gold-500)) 10px,
+      hsl(var(--gold-500)) 11px
+    );
+  pointer-events: none;
+}
+
+.btn-ethiopian-pattern:hover {
+  border-color: hsl(var(--gold-500) / 0.4);
+  box-shadow: 0 0 30px hsl(var(--gold-500) / 0.1);
+}
+
+/* ============================================================
+   🎨 ፕሪሚየም ኢንፑት ውጤቶች (Premium Input Effects)
+   ============================================================ */
+.input-premium {
+  @apply w-full transition-all duration-300;
+  background: hsl(var(--background) / 0.8);
+  border: 1px solid hsl(var(--border-subtle));
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  color: hsl(var(--foreground));
+}
+
+.input-premium:focus {
+  @apply outline-none;
+  border-color: hsl(var(--gold-500));
+  box-shadow: 0 0 0 4px hsl(var(--gold-500) / 0.1), var(--shadow-premium-sm);
+}
+
+.input-premium::placeholder {
+  color: hsl(var(--muted-foreground) / 0.6);
+}
+
+/* የኢትዮጵያ ጠርዝ ያለው ኢንፑት */
+.input-ethiopian {
+  @apply relative transition-all duration-300;
+  background: hsl(var(--background) / 0.6);
+  border: 1px solid hsl(var(--border-subtle));
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  color: hsl(var(--foreground));
+}
+
+.input-ethiopian::before {
+  content: '';
+  @apply absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-300;
+  background: linear-gradient(
+    135deg,
+    hsl(var(--gold-400) / 0.2),
+    hsl(var(--earth-400) / 0.1)
+  );
+  pointer-events: none;
+}
+
+.input-ethiopian:focus::before {
+  @apply opacity-100;
+}
+
+.input-ethiopian:focus {
+  @apply outline-none border-gold-500;
+  box-shadow: 0 0 0 4px hsl(var(--gold-500) / 0.1);
+}
+
+/* 🆕 ኢንፑት ከኢትዮጵያ ኮርነር ዲኮሬሽን ጋር */
+.input-ethiopian-corners {
+  @apply relative;
+}
+
+.input-ethiopian-corners input {
+  @apply w-full px-4 py-3 bg-transparent border-0 focus:ring-0 focus:outline-none;
+  border-radius: var(--radius-md);
+}
+
+.input-ethiopian-corners .corner {
+  @apply absolute w-4 h-4 transition-all duration-300;
+}
+
+.input-ethiopian-corners .corner-tl {
+  @apply top-0 left-0;
+  border-top: 2px solid hsl(var(--gold-500) / 0.2);
+  border-left: 2px solid hsl(var(--gold-500) / 0.2);
+}
+
+.input-ethiopian-corners .corner-tr {
+  @apply top-0 right-0;
+  border-top: 2px solid hsl(var(--gold-500) / 0.2);
+  border-right: 2px solid hsl(var(--gold-500) / 0.2);
+}
+
+.input-ethiopian-corners .corner-bl {
+  @apply bottom-0 left-0;
+  border-bottom: 2px solid hsl(var(--gold-500) / 0.2);
+  border-left: 2px solid hsl(var(--gold-500) / 0.2);
+}
+
+.input-ethiopian-corners .corner-br {
+  @apply bottom-0 right-0;
+  border-bottom: 2px solid hsl(var(--gold-500) / 0.2);
+  border-right: 2px solid hsl(var(--gold-500) / 0.2);
+}
+
+.input-ethiopian-corners:focus-within .corner {
+  border-color: hsl(var(--gold-500));
+}
+
+/* ============================================================
+   🎨 ልዩ የኢትዮጵያ ኮርነር ዲኮሬሽኖች (Ethiopian Corner Decorations)
+   ============================================================ */
+.corner-decoration {
+  @apply absolute w-8 h-8 pointer-events-none;
+}
+
+.corner-decoration-tl {
+  @apply top-0 left-0;
+  border-top: 2px solid hsl(var(--gold-500) / 0.3);
+  border-left: 2px solid hsl(var(--gold-500) / 0.3);
+}
+
+.corner-decoration-tr {
+  @apply top-0 right-0;
+  border-top: 2px solid hsl(var(--gold-500) / 0.3);
+  border-right: 2px solid hsl(var(--gold-500) / 0.3);
+}
+
+.corner-decoration-bl {
+  @apply bottom-0 left-0;
+  border-bottom: 2px solid hsl(var(--gold-500) / 0.3);
+  border-left: 2px solid hsl(var(--gold-500) / 0.3);
+}
+
+.corner-decoration-br {
+  @apply bottom-0 right-0;
+  border-bottom: 2px solid hsl(var(--gold-500) / 0.3);
+  border-right: 2px solid hsl(var(--gold-500) / 0.3);
+}
+
+/* 🆕 የኢትዮጵያ መስቀል ኮርነር */
+.corner-cross {
+  @apply absolute w-10 h-10 pointer-events-none opacity-20;
+}
+
+.corner-cross-tl {
+  @apply top-2 left-2;
+  border-top: 2px solid hsl(var(--gold-500) / 0.3);
+  border-left: 2px solid hsl(var(--gold-500) / 0.3);
+}
+
+.corner-cross-tl::after {
+  content: '';
+  @apply absolute -top-1 -left-1 w-3 h-3;
+  border-top: 2px solid hsl(var(--gold-500) / 0.3);
+  border-left: 2px solid hsl(var(--gold-500) / 0.3);
+}
+
+/* ============================================================
+   🎨 የገፅ ሽግግሮች እና አኒሜሽኖች (Page Transitions & Animations)
+   ============================================================ */
+.page-transition {
+  animation: pageFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* የኢትዮጵያ ስፒነር (ባለ ቀለም) */
+.spinner-ethiopian {
+  @apply h-12 w-12;
+  border: 3px solid hsl(var(--border-subtle));
+  border-top-color: hsl(var(--gold-500));
+  border-right-color: hsl(var(--earth-500));
+  border-bottom-color: hsl(var(--forest-500));
+  border-radius: 50%;
+  animation: ethiopianSpin 1s linear infinite;
+}
+
+@keyframes ethiopianSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* የጎልድ ነጠብጣብ ሸሚር */
+.shimmer-gold {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    hsl(var(--gold-500) / 0.05) 25%,
+    hsl(var(--gold-500) / 0.15) 50%,
+    hsl(var(--gold-500) / 0.05) 75%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmerGold 2s ease-in-out infinite;
+}
+
+@keyframes shimmerGold {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* 🆕 የኢትዮጵያ ሞገድ አኒሜሽን */
+.wave-ethiopian {
+  background: linear-gradient(
+    90deg,
+    hsl(var(--gold-500) / 0.1),
+    hsl(var(--forest-500) / 0.1),
+    hsl(var(--earth-500) / 0.1),
+    hsl(var(--gold-500) / 0.1)
+  );
+  background-size: 300% 100%;
+  animation: waveEthiopian 4s ease-in-out infinite;
+}
+
+@keyframes waveEthiopian {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* 🆕 የተንሳፋፊ ነጥቦች አኒሜሽን */
+.float-dots {
+  animation: floatDots 6s ease-in-out infinite;
+}
+
+@keyframes floatDots {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-10px) scale(1.05); }
+}
+
+/* ============================================================
+   🎨 ተጨማሪ የኢትዮጵያ ውበት ማሻሻያዎች (Ethiopian Beauty Enhancements)
+   ============================================================ */
+/* የጎልድ ነጠብጣብ ቦርደር */
+.border-gold-glow {
+  position: relative;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+
+.border-gold-glow::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    hsl(var(--gold-400) / 0.3),
+    hsl(var(--gold-500) / 0.5),
+    hsl(var(--gold-400) / 0.3)
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* የኢትዮጵያ የጽሁፍ ማብራሪያ */
+.text-ethiopian {
+  @apply font-cabinet tracking-wide;
+  background: linear-gradient(
+    135deg,
+    hsl(var(--forest-500)),
+    hsl(var(--gold-500)),
+    hsl(var(--earth-500))
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 🆕 የኢትዮጵያ ግሮቭ ቴክስት */
+.text-ethiopian-groove {
+  @apply font-cabinet font-bold;
+  background: linear-gradient(
+    180deg,
+    hsl(var(--gold-400)) 0%,
+    hsl(var(--gold-600)) 50%,
+    hsl(var(--gold-400)) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 20px hsl(var(--gold-500) / 0.2);
+}
+
+/* 🆕 የኢትዮጵያ ሃይላይት ቦክስ */
+.highlight-ethiopian {
+  @apply relative px-4 py-2 rounded-lg;
+  background: linear-gradient(
+    135deg,
+    hsl(var(--gold-500) / 0.08),
+    hsl(var(--forest-500) / 0.05)
+  );
+  border-left: 3px solid hsl(var(--gold-500));
+}
+
+/* ============================================================
+   🎨 ሙሉ የቀለም ቤተ-ስርዓት ማስፋፊያ (Extended Color System)
+   ============================================================ */
+@layer base {
+  :root {
+    /* የሼዶው እና ሃይላይት ተለዋዋጮች */
+    --shadow: 0 0% 0%;
+    --highlight: 0 0% 100%;
+    
+    /* ተጨማሪ የገጽታ ቀለማት */
+    --surface-1: 40 30% 96%;
+    --surface-2: 40 25% 92%;
+    --surface-3: 40 20% 88%;
+    
+    /* ለኢትዮጵያ ፓተርን የሚሆን ግልጽነት */
+    --pattern-opacity-light: 0.06;
+    --pattern-opacity-medium: 0.1;
+    --pattern-opacity-dark: 0.15;
+
+    /* 🆕 ተጨማሪ የሻዶው ተለዋዋጮች */
+    --shadow-premium-sm: 0 2px 8px hsl(var(--shadow) / 0.06);
+    --shadow-premium-md: 0 8px 32px hsl(var(--shadow) / 0.08);
+    --shadow-premium-lg: 0 20px 60px hsl(var(--shadow) / 0.12);
+    --shadow-premium-xl: 0 40px 80px hsl(var(--shadow) / 0.16);
+    
+    /* 🆕 የግላስ ተለዋዋጮች */
+    --glass-bg: hsl(var(--background) / 0.3);
+    --glass-border: hsl(var(--border-subtle) / 0.5);
+    --glass-shadow: 0 8px 32px hsl(var(--shadow) / 0.08);
+  }
+  
+  .dark {
+    --shadow: 0 0% 0%;
+    --highlight: 220 15% 10%;
+    
+    --surface-1: 220 15% 8%;
+    --surface-2: 220 15% 12%;
+    --surface-3: 220 15% 16%;
+
+    --glass-bg: hsl(var(--background) / 0.4);
+    --glass-border: hsl(var(--border-subtle) / 0.3);
+    --glass-shadow: 0 8px 32px hsl(var(--shadow) / 0.2);
+  }
+}
+
+/* ============================================================
+   🎨 ተጨማሪ ጠቃሚ የCSS ክፍሎች (Additional Utility Classes)
+   ============================================================ */
+.ethiopian-divider {
+  @apply h-px w-full;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    hsl(var(--gold-500) / 0.2),
+    hsl(var(--gold-500) / 0.3),
+    hsl(var(--gold-500) / 0.2),
+    transparent
+  );
+}
+
+.ethiopian-ornament {
+  @apply inline-block h-0.5 w-12;
+  background: linear-gradient(
+    90deg,
+    hsl(var(--gold-500) / 0.1),
+    hsl(var(--gold-500) / 0.5),
+    hsl(var(--gold-500) / 0.1)
+  );
+  border-radius: var(--radius-full);
+}
+
+/* 🆕 የኢትዮጵያ አካፋይ (Ethiopian Separator) */
+.separator-ethiopian {
+  @apply flex items-center gap-4;
+}
+
+.separator-ethiopian::before,
+.separator-ethiopian::after {
+  content: '';
+  @apply flex-1 h-px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    hsl(var(--gold-500) / 0.2)
+  );
+}
+
+.separator-ethiopian::after {
+  background: linear-gradient(
+    90deg,
+    hsl(var(--gold-500) / 0.2),
+    transparent
+  );
+}
+
+.separator-ethiopian .ornament {
+  @apply w-2 h-2 rotate-45;
+  background: hsl(var(--gold-500) / 0.3);
+  border-radius: 1px;
+}
+
+/* 🆕 የኢትዮጵያ ማዕቀፍ (Ethiopian Frame) */
+.frame-ethiopian {
+  @apply relative p-6;
+}
+
+.frame-ethiopian::before {
+  content: '';
+  @apply absolute inset-0;
+  border: 1px solid hsl(var(--gold-500) / 0.1);
+  border-radius: var(--radius-lg);
+}
+
+.frame-ethiopian::after {
+  content: '';
+  @apply absolute inset-4 pointer-events-none;
+  border: 1px solid hsl(var(--gold-500) / 0.05);
+  border-radius: var(--radius-md);
+}
+
+/* ============================================================
+   🎨 የስክሮል ባር ማበጀት
+   ============================================================ */
+::-webkit-scrollbar {
+  @apply w-2 h-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply rounded-full;
+  background: hsl(var(--gold-500) / 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--gold-500) / 0.5);
+}
+
+/* 🆕 የኢትዮጵያ ስክሮል ባር */
+.scrollbar-ethiopian::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    hsl(var(--gold-500) / 0.3),
+    hsl(var(--forest-500) / 0.3),
+    hsl(var(--earth-500) / 0.3)
+  );
+}
+
+/* ============================================================
+   🎨 ለመጨረሻ ጊዜ ማበልጸጊያ (Final Polish)
+   ============================================================ */
+::selection {
+  background: hsl(var(--gold-500) / 0.2);
+  color: hsl(var(--gold-500));
+}
+
+.dark ::selection {
+  background: hsl(var(--gold-500) / 0.3);
+  color: hsl(var(--gold-400));
+}
+
+/* ለገፅ መጫኛ ዝግጅት ስፒነር */
+.loading-ethiopian {
+  @apply flex items-center justify-center gap-3;
+}
+
+.loading-ethiopian .dot {
+  @apply h-3 w-3 rounded-full animate-bounce;
+  animation-duration: 0.6s;
+  animation-iteration-count: infinite;
+}
+
+.loading-ethiopian .dot:nth-child(1) {
+  background: hsl(var(--gold-500));
+  animation-delay: 0s;
+}
+
+.loading-ethiopian .dot:nth-child(2) {
+  background: hsl(var(--forest-500));
+  animation-delay: 0.15s;
+}
+
+.loading-ethiopian .dot:nth-child(3) {
+  background: hsl(var(--earth-500));
+  animation-delay: 0.3s;
+}
+
+/* 🆕 የኢትዮጵያ የመስቀል አኒሜሽን (ከቲያ) */
+.cross-ethiopian {
+  @apply relative w-12 h-12;
+}
+
+.cross-ethiopian::before,
+.cross-ethiopian::after {
+  content: '';
+  @apply absolute bg-gold-500/20 rounded-full;
+}
+
+.cross-ethiopian::before {
+  @apply w-full h-1 top-1/2 -translate-y-1/2;
+}
+
+.cross-ethiopian::after {
+  @apply w-1 h-full left-1/2 -translate-x-1/2;
+}
+
+/* 🆕 አኒሜሽን መዘግየት ክፍሎች */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+.delay-700 { animation-delay: 700ms; }
+.delay-800 { animation-delay: 800ms; }
+.delay-900 { animation-delay: 900ms; }
+.delay-1000 { animation-delay: 1000ms; }
