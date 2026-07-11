@@ -102,7 +102,7 @@ export default function AboutPage() {
             <p className="text-lg text-muted-foreground leading-relaxed">
               We believe every developer deserves access to professional-grade tools for 
               distributing and supporting their software. DevGlobal Hub was created to 
-              bridge the gap between indie developers and enterprise-level software 
+              bridge the gap between Ethiopia developers and enterprise-level software 
               distribution platforms. With AI-powered features, we're making it easier 
               than ever to manage licenses, provide support, and grow your software business.
             </p>
